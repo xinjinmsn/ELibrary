@@ -17,7 +17,7 @@ namespace ELibrary.Data
         }
         public IQueryable<Book> GetAllBooks()
         {
-            return _ctx.Books;
+            return _ctx.Books.Include("Author");
         }
 
         public IQueryable<Book> GetAllBooksWithTags()
