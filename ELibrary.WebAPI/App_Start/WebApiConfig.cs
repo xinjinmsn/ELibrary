@@ -19,7 +19,7 @@ namespace ELibrary.WebAPI
                 defaults: new { id=RouteParameter.Optional});
 
             var jsonFormatter = config.Formatters.JsonFormatter;
-
+            jsonFormatter.SerializerSettings.Formatting = Newtonsoft.Json.Formatting.Indented;
             jsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
         }
     }
