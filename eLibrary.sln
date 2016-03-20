@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ELibrary.Data", "eLibrary.Data\ELibrary.Data.csproj", "{FDDD9310-2813-4A98-B1FD-87751633C688}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ELibrary.WebAPI", "ELibrary.WebAPI\ELibrary.WebAPI.csproj", "{5F724C98-4416-4B2A-98E8-ECAB9F68BA69}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ELibrary.WebAPI", "ELibrary.WebAPI\ELibrary.WebAPI.csproj", "{64876913-6D94-4C3C-830D-807BC42AF72C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{FDDD9310-2813-4A98-B1FD-87751633C688}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FDDD9310-2813-4A98-B1FD-87751633C688}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FDDD9310-2813-4A98-B1FD-87751633C688}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5F724C98-4416-4B2A-98E8-ECAB9F68BA69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5F724C98-4416-4B2A-98E8-ECAB9F68BA69}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5F724C98-4416-4B2A-98E8-ECAB9F68BA69}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5F724C98-4416-4B2A-98E8-ECAB9F68BA69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64876913-6D94-4C3C-830D-807BC42AF72C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64876913-6D94-4C3C-830D-807BC42AF72C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64876913-6D94-4C3C-830D-807BC42AF72C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64876913-6D94-4C3C-830D-807BC42AF72C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
