@@ -12,11 +12,16 @@ namespace ELibrary.WebAPI.Controllers
 {
     public class BooksController : ApiController
     {
+        private IELibraryRepository _repo;
+
+        public BooksController(IELibraryRepository repo)
+        {
+            _repo = repo;
+        }
         public IEnumerable<Book> Get()
         {
-            var repo = new ELibraryRepository(new ELibraryContext());
-
-            var results = repo.GetAllBooks()
+            
+            var results = _repo.GetAllBooks()
                 .OrderBy(f => f.Title)
                 .Take(10)
                 .ToList();
