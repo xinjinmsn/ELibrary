@@ -15,7 +15,6 @@ namespace ELibrary.Data
             MapAuthor(modelBuilder);
             MapTag(modelBuilder);
             MapBook(modelBuilder);
-            MapTagEntry(modelBuilder);
             MapOrderEntry(modelBuilder);
             MapOrder(modelBuilder);
             MapApiToken(modelBuilder);
@@ -35,11 +34,6 @@ namespace ELibrary.Data
         static void MapBook(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Book>().ToTable("Book", "Book");
-        }
-
-        static void MapTagEntry(DbModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<TagEntry>().ToTable("TagEntry", "Book");
         }
 
         static void MapOrderEntry(DbModelBuilder modelBuilder)

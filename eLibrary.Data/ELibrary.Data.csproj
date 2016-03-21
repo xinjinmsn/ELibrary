@@ -60,11 +60,10 @@
     <Compile Include="Entities\Order.cs" />
     <Compile Include="Entities\OrderEntry.cs" />
     <Compile Include="Entities\Tag.cs" />
-    <Compile Include="Entities\TagEntry.cs" />
     <Compile Include="IELibraryRepository.cs" />
-    <Compile Include="Migrations\201603200548512_Initial.cs" />
-    <Compile Include="Migrations\201603200548512_Initial.Designer.cs">
-      <DependentUpon>201603200548512_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201603210737355_Initial.cs" />
+    <Compile Include="Migrations\201603210737355_Initial.Designer.cs">
+      <DependentUpon>201603210737355_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -74,8 +73,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201603200548512_Initial.resx">
-      <DependentUpon>201603200548512_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201603210737355_Initial.resx">
+      <DependentUpon>201603210737355_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

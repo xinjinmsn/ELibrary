@@ -57,20 +57,6 @@ namespace ELibrary.Data.Migrations
                 .Index(t => t.Author_Id);
             
             CreateTable(
-                "Book.TagEntry",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        BookItem_Id = c.Int(),
-                        TagItem_Id = c.Int(),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("Book.Book", t => t.BookItem_Id)
-                .ForeignKey("Book.Tag", t => t.TagItem_Id)
-                .Index(t => t.BookItem_Id)
-                .Index(t => t.TagItem_Id);
-            
-            CreateTable(
                 "Book.Tag",
                 c => new
                     {
@@ -104,26 +90,39 @@ namespace ELibrary.Data.Migrations
                     })
                 .PrimaryKey(t => t.Id);
             
+            CreateTable(
+                "dbo.TagBooks",
+                c => new
+                    {
+                        Tag_Id = c.Int(nullable: false),
+                        Book_Id = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => new { t.Tag_Id, t.Book_Id })
+                .ForeignKey("Book.Tag", t => t.Tag_Id, cascadeDelete: true)
+                .ForeignKey("Book.Book", t => t.Book_Id, cascadeDelete: true)
+                .Index(t => t.Tag_Id)
+                .Index(t => t.Book_Id);
+            
         }
         
         public override void Down()
         {
             DropForeignKey("Library.OrderEntry", "Order_Id", "Library.Order");
             DropForeignKey("Library.OrderEntry", "BookItem_Id", "Book.Book");
-            DropForeignKey("Book.TagEntry", "TagItem_Id", "Book.Tag");
-            DropForeignKey("Book.TagEntry", "BookItem_Id", "Book.Book");
+            DropForeignKey("dbo.TagBooks", "Book_Id", "Book.Book");
+            DropForeignKey("dbo.TagBooks", "Tag_Id", "Book.Tag");
             DropForeignKey("Book.Book", "Author_Id", "Book.Author");
             DropForeignKey("Security.AuthToken", "ApiUser_Id", "Security.ApiUser");
+            DropIndex("dbo.TagBooks", new[] { "Book_Id" });
+            DropIndex("dbo.TagBooks", new[] { "Tag_Id" });
             DropIndex("Library.OrderEntry", new[] { "Order_Id" });
             DropIndex("Library.OrderEntry", new[] { "BookItem_Id" });
-            DropIndex("Book.TagEntry", new[] { "TagItem_Id" });
-            DropIndex("Book.TagEntry", new[] { "BookItem_Id" });
             DropIndex("Book.Book", new[] { "Author_Id" });
             DropIndex("Security.AuthToken", new[] { "ApiUser_Id" });
+            DropTable("dbo.TagBooks");
             DropTable("Library.Order");
             DropTable("Library.OrderEntry");
             DropTable("Book.Tag");
-            DropTable("Book.TagEntry");
             DropTable("Book.Book");
             DropTable("Security.AuthToken");
             DropTable("Book.Author");

@@ -22,7 +22,7 @@ namespace ELibrary.Data
 
         public IQueryable<Book> GetAllBooksWithTags()
         {
-            return _ctx.Books.Include("Tags");
+            return _ctx.Books.Include("Author").Include("Tags");
         }
 
         public Book GetBook(int id)

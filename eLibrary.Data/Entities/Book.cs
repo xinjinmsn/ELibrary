@@ -11,7 +11,7 @@ namespace ELibrary.Data.Entities
     {
         public Book()
         {
-            Tags = new List<TagEntry>();
+            Tags = new List<Tag>();
         }
         public int Id { get; set; }
 
@@ -24,7 +24,7 @@ namespace ELibrary.Data.Entities
         public int Stock { get; set; }
 
         public Author Author { get; set; }
-        public virtual ICollection<TagEntry> Tags {get;set;}
+        public virtual ICollection<Tag> Tags {get;set;}
 
     }
 }

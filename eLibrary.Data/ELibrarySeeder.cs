@@ -30,7 +30,7 @@ namespace ELibrary.Data
 
 #if TEST_SEED || FORCE_RECREATE
       ExecuteQueries(
-        "DELETE FROM Book.TagEntry",
+        "DELETE FROM TagBooks",
         "DELETE FROM Book.Tag",
         "DELETE FROM Book.Book",
         "DELETE FROM Book.Author"
@@ -62,6 +62,22 @@ namespace ELibrary.Data
         void SeedBooks()
         {
 
+            //var book = new Book
+            //{
+            //    Title = "CLR via C#, Second Edition",
+            //    Author = new Author { Name = "Jeffrey Richter" },
+            //    Pages = 736,
+            //    Price = 39.99m,
+            //    Stock = 9,
+            //    Year = 2006,
+            //};
+
+            //var tag = _ctx.Tags.Where(f => f.Name == "Programming").FirstOrDefault();
+
+            //tag.Books.Add(book);
+            //book.Tags.Add(tag);
+
+
 
             //Add book CLR via C#, Second Edition
             var book = new Book
@@ -74,23 +90,17 @@ namespace ELibrary.Data
                 Year = 2006,
             };
 
-            book.Tags.Add(new TagEntry
-            {
-                BookItem = book,
-                TagItem = _ctx.Tags.Where(f => f.Name == "Programming").FirstOrDefault()
-            });
+            var tag = _ctx.Tags.Where(f => f.Name == "Programming").FirstOrDefault();
+            tag.Books.Add(book);
+            book.Tags.Add(tag);
 
-            book.Tags.Add(new TagEntry
-            {
-                BookItem = book,
-                TagItem = _ctx.Tags.Where(f => f.Name == "C#").FirstOrDefault()
-            });
+            tag = _ctx.Tags.Where(f => f.Name == "C#").FirstOrDefault();
+            tag.Books.Add(book);
+            book.Tags.Add(tag);
 
-            book.Tags.Add(new TagEntry
-            {
-                BookItem = book,
-                TagItem = _ctx.Tags.Where(f => f.Name == ".Net").FirstOrDefault()
-            });
+            tag = _ctx.Tags.Where(f => f.Name == ".Net").FirstOrDefault();
+            tag.Books.Add(book);
+            book.Tags.Add(tag);
 
             _ctx.Books.Add(book);
 
@@ -106,17 +116,13 @@ namespace ELibrary.Data
                 Year = 2004,
             };
 
-            book.Tags.Add(new TagEntry
-            {
-                BookItem = book,
-                TagItem = _ctx.Tags.Where(f => f.Name == "Software Design & Engineering").FirstOrDefault()
-            });
+            tag = _ctx.Tags.Where(f => f.Name == "Software Design & Engineering").FirstOrDefault();
+            tag.Books.Add(book);
+            book.Tags.Add(tag);
 
-            book.Tags.Add(new TagEntry
-            {
-                BookItem = book,
-                TagItem = _ctx.Tags.Where(f => f.Name == "Enterprise Applications").FirstOrDefault()
-            });
+            tag = _ctx.Tags.Where(f => f.Name == "Enterprise Applications").FirstOrDefault();
+            tag.Books.Add(book);
+            book.Tags.Add(tag);
 
             _ctx.Books.Add(book);
 
@@ -132,17 +138,13 @@ namespace ELibrary.Data
                 Year = 2014,
             };
 
-            book.Tags.Add(new TagEntry
-            {
-                BookItem = book,
-                TagItem = _ctx.Tags.Where(f => f.Name == "Programming").FirstOrDefault()
-            });
+            tag = _ctx.Tags.Where(f => f.Name == "Programming").FirstOrDefault();
+            tag.Books.Add(book);
+            book.Tags.Add(tag);
 
-            book.Tags.Add(new TagEntry
-            {
-                BookItem = book,
-                TagItem = _ctx.Tags.Where(f => f.Name == "Web Design").FirstOrDefault()
-            });
+            tag = _ctx.Tags.Where(f => f.Name == "Web Design").FirstOrDefault();
+            tag.Books.Add(book);
+            book.Tags.Add(tag);
 
             _ctx.Books.Add(book);
 
@@ -157,23 +159,17 @@ namespace ELibrary.Data
                 Year = 2008,
             };
 
-            book.Tags.Add(new TagEntry
-            {
-                BookItem = book,
-                TagItem = _ctx.Tags.Where(f => f.Name == "Programming").FirstOrDefault()
-            });
+            tag = _ctx.Tags.Where(f => f.Name == "Programming").FirstOrDefault();
+            tag.Books.Add(book);
+            book.Tags.Add(tag);
 
-            book.Tags.Add(new TagEntry
-            {
-                BookItem = book,
-                TagItem = _ctx.Tags.Where(f => f.Name == "Web Design").FirstOrDefault()
-            });
+            tag = _ctx.Tags.Where(f => f.Name == "Web Design").FirstOrDefault();
+            tag.Books.Add(book);
+            book.Tags.Add(tag);
 
-            book.Tags.Add(new TagEntry
-            {
-                BookItem = book,
-                TagItem = _ctx.Tags.Where(f => f.Name == "JavaScript").FirstOrDefault()
-            });
+            tag = _ctx.Tags.Where(f => f.Name == "JavaScript").FirstOrDefault();
+            tag.Books.Add(book);
+            book.Tags.Add(tag);
 
             _ctx.Books.Add(book);
 
@@ -188,15 +184,11 @@ namespace ELibrary.Data
                 Year = 2008,
             };
 
-            book.Tags.Add(new TagEntry
-            {
-                BookItem = book,
-                TagItem = _ctx.Tags.Where(f => f.Name == "Software Design & Engineering").FirstOrDefault()
-            });
-
+            tag = _ctx.Tags.Where(f => f.Name == "Software Design & Engineering").FirstOrDefault();
+            tag.Books.Add(book);
+            book.Tags.Add(tag);
 
             _ctx.Books.Add(book);
-
 
             //Save all changes
             _ctx.SaveChanges();
