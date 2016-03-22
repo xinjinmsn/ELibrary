@@ -21,15 +21,23 @@ namespace ELibrary.WebAPI.Controllers
             _repo = repo;
             _modelFactory = new ModelFactory();
         }
-        public IEnumerable<BookModel> Get()
+        public IEnumerable<BookModel> Get(bool includeTags=true)
         {
-            
-            var results = _repo.GetAllBooksWithTags()
-                .OrderBy(f => f.Title)
-                .Take(10)
-                .ToList()
-                .Select(f => _modelFactory.Create(f));
+            IQueryable<Book> query;
 
+            if(includeTags)
+            {
+                query = _repo.GetAllBooksWithTags();
+            }
+            else
+            {
+                query = _repo.GetAllBooks(); 
+            }
+
+            var results = query.OrderBy(f => f.Title)
+                            .Take(10)
+                            .ToList()
+                            .Select(f => _modelFactory.Create(f));
             return results;
         }
 

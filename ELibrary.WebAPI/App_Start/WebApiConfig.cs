@@ -15,12 +15,19 @@ namespace ELibrary.WebAPI
             // Web API configuration and services
 
             config.Routes.MapHttpRoute(
-                name:"Book",
-                routeTemplate:"api/library/books/{id}",
-                defaults: new { controller = "books", id=RouteParameter.Optional},
-                constraints: new { id = "\\d+"}
+                name: "Book",
+                routeTemplate: "api/library/{controller}/{id}",
+                defaults: new { id = RouteParameter.Optional}
                 );
 
+            ////Remove this template with constraints
+            ////Because it will overwrite id = RouteParameter.Optional
+            //config.Routes.MapHttpRoute(
+            //    name: "Book",
+            //    routeTemplate: "api/library/{controller}/{id}",
+            //    defaults: new { id = RouteParameter.Optional },
+            //    constraints: new { id=@"\d+"}
+            //    );
 
 
             var jsonFormatter = config.Formatters.JsonFormatter;
