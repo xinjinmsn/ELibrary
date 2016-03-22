@@ -15,9 +15,11 @@ namespace ELibrary.WebAPI
             // Web API configuration and services
 
             config.Routes.MapHttpRoute(
-                name:"DefaultApi",
-                routeTemplate:"api/{controller}/{id}",
-                defaults: new { id=RouteParameter.Optional});
+                name:"Book",
+                routeTemplate:"api/library/books/{id}",
+                defaults: new { controller = "books", id=RouteParameter.Optional});
+
+
 
             var jsonFormatter = config.Formatters.JsonFormatter;
             jsonFormatter.SerializerSettings.Formatting = Newtonsoft.Json.Formatting.Indented;
