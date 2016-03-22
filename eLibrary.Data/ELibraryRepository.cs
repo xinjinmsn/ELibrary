@@ -27,7 +27,7 @@ namespace ELibrary.Data
 
         public Book GetBook(int id)
         {
-            return _ctx.Books.Include("Tags").Where(f => f.Id == id).FirstOrDefault();
+            return _ctx.Books.Include("Author").Include("Tags").Where(f => f.Id == id).FirstOrDefault();
         }
 
         public Tag GetTag(int id)
