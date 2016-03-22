@@ -21,7 +21,7 @@ namespace ELibrary.WebAPI.Controllers
         public IEnumerable<Book> Get()
         {
             
-            var results = _repo.GetAllBooks()
+            var results = _repo.GetAllBooksWithTags()
                 .OrderBy(f => f.Title)
                 .Take(10)
                 .ToList();
