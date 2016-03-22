@@ -13,27 +13,22 @@ namespace ELibrary.WebAPI.Controllers
 {
     public class BooksController : ApiController
     {
+        private ModelFactory _modelFactory;
         private IELibraryRepository _repo;
 
         public BooksController(IELibraryRepository repo)
         {
             _repo = repo;
+            _modelFactory = new ModelFactory();
         }
-        public IEnumerable<Object> Get()
+        public IEnumerable<BookModel> Get()
         {
             
             var results = _repo.GetAllBooksWithTags()
                 .OrderBy(f => f.Title)
                 .Take(10)
                 .ToList()
-                .Select(f => new BookModel {
-                    Title = f.Title,
-                    Year = f.Year,
-                    Author = f.Author,
-                    Tags = f.Tags.Select(m=> new TagModel{
-                        Name = m.Name
-                    })
-                });
+                .Select(f => _modelFactory.Create(f));
 
             return results;
         }
