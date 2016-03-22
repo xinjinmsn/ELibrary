@@ -32,5 +32,10 @@ namespace ELibrary.WebAPI.Controllers
 
             return results;
         }
+
+        public BookModel Get(int id)
+        {
+            return _modelFactory.Create(_repo.GetBook(id));
+        }
     }
 }
