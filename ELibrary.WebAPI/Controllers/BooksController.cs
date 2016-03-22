@@ -18,13 +18,21 @@ namespace ELibrary.WebAPI.Controllers
         {
             _repo = repo;
         }
-        public IEnumerable<Book> Get()
+        public IEnumerable<Object> Get()
         {
             
             var results = _repo.GetAllBooksWithTags()
                 .OrderBy(f => f.Title)
                 .Take(10)
-                .ToList();
+                .ToList()
+                .Select(f => new {
+                    Title = f.Title,
+                    Year = f.Year,
+                    Author = f.Author,
+                    Tags = f.Tags.Select(m=> new {
+                        Name = m.Name
+                    })
+                });
 
             return results;
         }
