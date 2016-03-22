@@ -17,7 +17,9 @@ namespace ELibrary.WebAPI
             config.Routes.MapHttpRoute(
                 name:"Book",
                 routeTemplate:"api/library/books/{id}",
-                defaults: new { controller = "books", id=RouteParameter.Optional});
+                defaults: new { controller = "books", id=RouteParameter.Optional},
+                constraints: new { id = "\\d+"}
+                );
 
 
 
