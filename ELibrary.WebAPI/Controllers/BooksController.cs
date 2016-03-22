@@ -1,5 +1,6 @@
 ﻿using ELibrary.Data;
 using ELibrary.Data.Entities;
+using ELibrary.WebAPI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,11 +26,11 @@ namespace ELibrary.WebAPI.Controllers
                 .OrderBy(f => f.Title)
                 .Take(10)
                 .ToList()
-                .Select(f => new {
+                .Select(f => new BookModel {
                     Title = f.Title,
                     Year = f.Year,
                     Author = f.Author,
-                    Tags = f.Tags.Select(m=> new {
+                    Tags = f.Tags.Select(m=> new TagModel{
                         Name = m.Name
                     })
                 });
