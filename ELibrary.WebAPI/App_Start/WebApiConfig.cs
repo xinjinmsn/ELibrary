@@ -25,6 +25,8 @@ namespace ELibrary.WebAPI
 
             jsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
 
+            jsonFormatter.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+
         }
     }
 }
