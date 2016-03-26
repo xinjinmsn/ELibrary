@@ -8,6 +8,7 @@ namespace ELibrary.WebAPI.Models
 {
     public class BookModel
     {
+        public string Url { get; set; }
         public string Title { get; set; }
         public int Year { get; set; }
         public Author Author { get; set; }
