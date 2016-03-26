@@ -41,6 +41,11 @@ namespace ELibrary.Data
             return _ctx.Tags.Include("Books").Where(f => f.Id == id).FirstOrDefault();
         }
 
+        public Tag GetTag(int bookid, int id)
+        {
+            return GetTagsForBook(bookid).ToList().Where(f=>f.Id==id).FirstOrDefault();
+        }
+
         public bool SaveAll()
         {
             return _ctx.SaveChanges() > 0; 
