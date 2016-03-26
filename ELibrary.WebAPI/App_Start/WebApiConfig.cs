@@ -20,8 +20,6 @@ namespace ELibrary.WebAPI
                 defaults: new { controller = "books", bookid = RouteParameter.Optional}
                 );
 
-
-
             ////Remove this template with constraints
             ////Because it will overwrite id = RouteParameter.Optional
             //config.Routes.MapHttpRoute(

@@ -25,6 +25,12 @@ namespace ELibrary.Data
             return _ctx.Books.Include("Author").Include("Tags");
         }
 
+        public IQueryable<Tag> GetTagsForBook(int bookid)
+        {
+            return _ctx.Tags.Include("Books")
+                .Where(f => f.Books.Any(m=>m.Id==bookid));
+        }
+
         public Book GetBook(int id)
         {
             return _ctx.Books.Include("Author").Include("Tags").Where(f => f.Id == id).FirstOrDefault();
