@@ -16,10 +16,9 @@ namespace ELibrary.WebAPI
 
             config.Routes.MapHttpRoute(
                 name: "Book",
-                routeTemplate: "api/library/{controller}/{bookid}",
-                defaults: new { bookid = RouteParameter.Optional}
+                routeTemplate: "api/library/books/{bookid}",
+                defaults: new { controller = "books", bookid = RouteParameter.Optional}
                 );
-
 
 
 
