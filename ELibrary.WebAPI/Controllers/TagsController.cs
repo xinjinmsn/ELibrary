@@ -29,7 +29,15 @@ namespace ELibrary.WebAPI.Controllers
             return results;
         }
 
+        public TagModel Get(int bookid, int id)
+        {
+            var result = _repo.GetTag(bookid, id);
 
+            if (result != null)
+                return _modelFactory.Create(result);
+
+            return null;
+        }
 
 
     }
