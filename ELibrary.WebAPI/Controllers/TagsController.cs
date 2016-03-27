@@ -16,12 +16,12 @@ namespace ELibrary.WebAPI.Controllers
 
         }
 
-        public TagModel Get(int id)
+        public TagWithBooksModel Get(int id)
         {
             var result = TheRepository.GetTag(id);
 
             if (result != null)
-                return TheModelFactory.Create(result);
+                return (TagWithBooksModel)TheModelFactory.Create(result);
 
             return null;
         }

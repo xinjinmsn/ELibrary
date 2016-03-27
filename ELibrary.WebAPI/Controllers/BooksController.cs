@@ -29,16 +29,16 @@ namespace ELibrary.WebAPI.Controllers
                 query = TheRepository.GetAllBooks(); 
             }
 
-            var results = query.OrderBy(f => f.Title)
+            var results =query.OrderBy(f => f.Title)
                             .Take(10)
                             .ToList()
-                            .Select(f => TheModelFactory.Create(f));
+                            .Select(f => (BookWithTagsModel)TheModelFactory.Create(f));
             return results;
         }
 
         public BookWithTagsModel Get(int bookid)
         {
-            return TheModelFactory.Create(TheRepository.GetBook(bookid));
+            return (BookWithTagsModel)TheModelFactory.Create(TheRepository.GetBook(bookid));
         }
     }
 }

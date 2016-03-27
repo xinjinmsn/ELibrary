@@ -6,13 +6,8 @@ using System.Web;
 
 namespace ELibrary.WebAPI.Models
 {
-    public class BookWithTagsModel
+    public class BookWithTagsModel : BookModel
     {
-        public string Url { get; set; }
-        public string Title { get; set; }
-        public int Year { get; set; }
-        public Author Author { get; set; }
-
         public IEnumerable<TagModel> Tags { get; set; }
     }
 }

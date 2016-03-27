@@ -20,7 +20,7 @@ namespace ELibrary.WebAPI.Controllers
         {
             var results = TheRepository.GetTagsForBook(bookid)
                 .ToList()
-                .Select(f => TheModelFactory.Create(f));
+                .Select(f => TheModelFactory.Create(f, false));
 
             return results;
         }
@@ -30,7 +30,7 @@ namespace ELibrary.WebAPI.Controllers
             var result = TheRepository.GetTag(bookid, id);
 
             if (result != null)
-                return TheModelFactory.Create(result);
+                return TheModelFactory.Create(result, false);
 
             return null;
         }

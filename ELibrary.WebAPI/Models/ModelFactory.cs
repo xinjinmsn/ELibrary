@@ -16,25 +16,46 @@ namespace ELibrary.WebAPI.Models
         {
             _urlHelp = new UrlHelper(request);
         }
-        public BookWithTagsModel Create(Book book)
+        public BookModel Create(Book book, bool withTags = true)
         {
-            return new BookWithTagsModel
-            {
-                Url = _urlHelp.Link("Book", new { bookid=book.Id}),
-                Title = book.Title,
-                Year = book.Year,
-                Author = book.Author,
-                Tags = book.Tags.Select(m => Create(m))
-            };
+            if(withTags)
+                return new BookWithTagsModel
+                {
+                    Url = _urlHelp.Link("Book", new { bookid=book.Id}),
+                    Title = book.Title,
+                    Year = book.Year,
+                    Author = book.Author,
+                    Tags = book.Tags.Select(m => Create(m, false))
+                };
+            else
+                return new BookModel
+                {
+                    Url = _urlHelp.Link("Book", new { bookid = book.Id }),
+                    Title = book.Title,
+                    Year = book.Year,
+                    Author = book.Author,
+                };
+
         }
 
-        public TagModel Create(Tag tag)
+        public TagModel Create(Tag tag, bool withBook = true)
         {
-            return new TagModel
-            {
-                Url = _urlHelp.Link("tags", new { id=tag.Id}),
-                Name = tag.Name
-            };
+            if(withBook)
+                return new TagWithBooksModel
+                {
+                    Url = _urlHelp.Link("tags", new { id = tag.Id }),
+                    Name = tag.Name,
+                    Books = tag.Books.Select(m=>Create(m, false))
+                };
+            else
+                return new TagModel
+                {
+                    Url = _urlHelp.Link("tags", new { id = tag.Id }),
+                    Name = tag.Name,
+                };
+
+
         }
+
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ELibrary.Data.Entities;
+using System.Data.Entity;
 
 namespace ELibrary.Data
 {
@@ -38,7 +39,8 @@ namespace ELibrary.Data
 
         public Tag GetTag(int id)
         {
-            return _ctx.Tags.Include("Books").Where(f => f.Id == id).FirstOrDefault();
+            return _ctx.Tags.Include(m=>m.Books.Select(i=>i.Author)).Where(f => f.Id == id).FirstOrDefault();
+            
         }
 
         public Tag GetTag(int bookid, int id)
