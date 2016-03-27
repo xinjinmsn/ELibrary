@@ -9,32 +9,28 @@ using System.Web.Http;
 
 namespace ELibrary.WebAPI.Controllers
 {
-    public class TagsController : ApiController
+    public class TagsController : BaseApiController
     {
-        private ModelFactory _modelFactory;
-        private IELibraryRepository _repo;
-
-        public TagsController(IELibraryRepository repo)
+        public TagsController(IELibraryRepository repo):base(repo)
         {
-            _repo = repo;
-            _modelFactory = new ModelFactory(this.Request);
+
         }
 
         public IEnumerable<TagModel> Get(int bookid)
         {
-            var results = _repo.GetTagsForBook(bookid)
+            var results = TheRepository.GetTagsForBook(bookid)
                 .ToList()
-                .Select(f => _modelFactory.Create(f));
+                .Select(f => TheModelFactory.Create(f));
 
             return results;
         }
 
         public TagModel Get(int bookid, int id)
         {
-            var result = _repo.GetTag(bookid, id);
+            var result = TheRepository.GetTag(bookid, id);
 
             if (result != null)
-                return _modelFactory.Create(result);
+                return TheModelFactory.Create(result);
 
             return null;
         }

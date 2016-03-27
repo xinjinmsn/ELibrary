@@ -11,15 +11,10 @@ using System.Web.Http;
 
 namespace ELibrary.WebAPI.Controllers
 {
-    public class BooksController : ApiController
+    public class BooksController : BaseApiController
     {
-        private ModelFactory _modelFactory;
-        private IELibraryRepository _repo;
-
-        public BooksController(IELibraryRepository repo)
+        public BooksController(IELibraryRepository repo) : base(repo)
         {
-            _repo = repo;
-            _modelFactory = new ModelFactory(this.Request);
         }
         public IEnumerable<BookModel> Get(bool includeTags=true)
         {
@@ -27,23 +22,23 @@ namespace ELibrary.WebAPI.Controllers
 
             if(includeTags)
             {
-                query = _repo.GetAllBooksWithTags();
+                query = TheRepository.GetAllBooksWithTags();
             }
             else
             {
-                query = _repo.GetAllBooks(); 
+                query = TheRepository.GetAllBooks(); 
             }
 
             var results = query.OrderBy(f => f.Title)
                             .Take(10)
                             .ToList()
-                            .Select(f => _modelFactory.Create(f));
+                            .Select(f => TheModelFactory.Create(f));
             return results;
         }
 
         public BookModel Get(int bookid)
         {
-            return _modelFactory.Create(_repo.GetBook(bookid));
+            return TheModelFactory.Create(TheRepository.GetBook(bookid));
         }
     }
 }
