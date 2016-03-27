@@ -2,17 +2,25 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Web;
+using System.Web.Http.Routing;
 
 namespace ELibrary.WebAPI.Models
 {
     public class ModelFactory
     {
+        private UrlHelper _urlHelp;
+
+        public ModelFactory(HttpRequestMessage request)
+        {
+            _urlHelp = new UrlHelper(request);
+        }
         public BookModel Create(Book book)
         {
             return new BookModel
             {
-                Url = string.Format("http://localhost:9294/api/library/books/{0}", book.Id),
+                Url = _urlHelp.Link("Book", new { bookid=book.Id}),
                 Title = book.Title,
                 Year = book.Year,
                 Author = book.Author,

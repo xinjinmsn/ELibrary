@@ -19,7 +19,7 @@ namespace ELibrary.WebAPI.Controllers
         public BooksController(IELibraryRepository repo)
         {
             _repo = repo;
-            _modelFactory = new ModelFactory();
+            _modelFactory = new ModelFactory(this.Request);
         }
         public IEnumerable<BookModel> Get(bool includeTags=true)
         {
