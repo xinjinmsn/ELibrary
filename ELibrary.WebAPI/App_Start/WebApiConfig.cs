@@ -21,9 +21,9 @@ namespace ELibrary.WebAPI
                 );
 
             config.Routes.MapHttpRoute(
-                name: "Tags",
+                name: "TagsWithBook",
                 routeTemplate: "api/library/books/{bookid}/tags/{id}",
-                defaults: new { controller = "tags", id = RouteParameter.Optional }
+                defaults: new { controller = "tagswithbook", id = RouteParameter.Optional }
                 );
 
             ////Remove this template with constraints

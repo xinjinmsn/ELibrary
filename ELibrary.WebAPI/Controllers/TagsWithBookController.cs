@@ -9,9 +9,9 @@ using System.Web.Http;
 
 namespace ELibrary.WebAPI.Controllers
 {
-    public class TagsController : BaseApiController
+    public class TagsWithBookController : BaseApiController
     {
-        public TagsController(IELibraryRepository repo):base(repo)
+        public TagsWithBookController(IELibraryRepository repo):base(repo)
         {
 
         }
@@ -34,6 +34,8 @@ namespace ELibrary.WebAPI.Controllers
 
             return null;
         }
+
+
 
 
     }
