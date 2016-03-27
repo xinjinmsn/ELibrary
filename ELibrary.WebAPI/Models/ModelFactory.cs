@@ -12,6 +12,7 @@ namespace ELibrary.WebAPI.Models
         {
             return new BookModel
             {
+                Url = string.Format("http://localhost:9294/api/library/books/{0}", book.Id),
                 Title = book.Title,
                 Year = book.Year,
                 Author = book.Author,
@@ -23,6 +24,7 @@ namespace ELibrary.WebAPI.Models
         {
             return new TagModel
             {
+                Url = "",
                 Name = tag.Name
             };
         }
