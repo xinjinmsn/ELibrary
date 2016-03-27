@@ -48,6 +48,14 @@ namespace ELibrary.Data
             return GetTagsForBook(bookid).ToList().Where(f=>f.Id==id).FirstOrDefault();
         }
 
+
+        public IQueryable<Order> GetOrders(string userName)
+        {
+            return _ctx.Orders.Include("Entries.BookItem")
+                .OrderByDescending(d=>d.CurrentDate)
+                .Where(d=>d.UserName == userName);
+        }
+
         public bool SaveAll()
         {
             return _ctx.SaveChanges() > 0; 
