@@ -11,6 +11,7 @@ namespace ELibrary.WebAPI.App_Start
     using Ninject;
     using Ninject.Web.Common;
     using Data;
+    using Services;
     public static class NinjectWebCommon 
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
@@ -63,6 +64,7 @@ namespace ELibrary.WebAPI.App_Start
         {
             kernel.Bind<IELibraryRepository>().To<ELibraryRepository>();
             kernel.Bind<ELibraryContext>().To<ELibraryContext>();
+            kernel.Bind<IELibraryIdentityService>().To<ELibraryIdentityService>();
         }        
     }
 }

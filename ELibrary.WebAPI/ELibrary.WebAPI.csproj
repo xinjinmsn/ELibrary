@@ -177,6 +177,8 @@
     <Compile Include="Models\TagModel.cs" />
     <Compile Include="Models\TagWithBooksModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\ELibraryIdentityService.cs" />
+    <Compile Include="Services\IELibraryIdentityService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\eLibrary.Data\ELibrary.Data.csproj">
