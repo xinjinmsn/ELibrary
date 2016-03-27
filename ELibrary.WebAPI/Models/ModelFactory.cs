@@ -16,9 +16,9 @@ namespace ELibrary.WebAPI.Models
         {
             _urlHelp = new UrlHelper(request);
         }
-        public BookModel Create(Book book)
+        public BookWithTagsModel Create(Book book)
         {
-            return new BookModel
+            return new BookWithTagsModel
             {
                 Url = _urlHelp.Link("Book", new { bookid=book.Id}),
                 Title = book.Title,
@@ -32,7 +32,7 @@ namespace ELibrary.WebAPI.Models
         {
             return new TagModel
             {
-                Url = "",
+                Url = _urlHelp.Link("tags", new { id=tag.Id}),
                 Name = tag.Name
             };
         }

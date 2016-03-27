@@ -16,7 +16,7 @@ namespace ELibrary.WebAPI.Controllers
         public BooksController(IELibraryRepository repo) : base(repo)
         {
         }
-        public IEnumerable<BookModel> Get(bool includeTags=true)
+        public IEnumerable<BookWithTagsModel> Get(bool includeTags=true)
         {
             IQueryable<Book> query;
 
@@ -36,7 +36,7 @@ namespace ELibrary.WebAPI.Controllers
             return results;
         }
 
-        public BookModel Get(int bookid)
+        public BookWithTagsModel Get(int bookid)
         {
             return TheModelFactory.Create(TheRepository.GetBook(bookid));
         }

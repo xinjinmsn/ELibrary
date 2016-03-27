@@ -6,7 +6,7 @@ using System.Web;
 
 namespace ELibrary.WebAPI.Models
 {
-    public class BookModel
+    public class BookWithTagsModel
     {
         public string Url { get; set; }
         public string Title { get; set; }
