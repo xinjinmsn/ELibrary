@@ -22,6 +22,7 @@ namespace ELibrary.Data
         Tag GetTag(int id);
         Tag GetTag(int bookid, int id);
         IQueryable<Order> GetOrders(string userName);
+        Order GetOrder(string userName, DateTime orderId);
 
     }
 }

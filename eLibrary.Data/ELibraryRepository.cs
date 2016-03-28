@@ -56,6 +56,11 @@ namespace ELibrary.Data
                 .Where(d=>d.UserName == userName);
         }
 
+        public Order GetOrder(string userName, DateTime orderId)
+        {
+            return GetOrders(userName).Where(d => d.CurrentDate == orderId.Date).FirstOrDefault();
+        }
+
         public bool SaveAll()
         {
             return _ctx.SaveChanges() > 0; 

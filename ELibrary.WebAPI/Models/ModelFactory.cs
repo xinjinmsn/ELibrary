@@ -42,7 +42,7 @@ namespace ELibrary.WebAPI.Models
         {
             return new OrderModel
             {
-                Url = _urlHelp.Link("Orders", new { orderid = d.CurrentDate }),
+                Url = _urlHelp.Link("Orders", new { orderid = d.CurrentDate.ToString("yyyy-MM-dd") }),
                 CurrentDate = d.CurrentDate
         };
     }

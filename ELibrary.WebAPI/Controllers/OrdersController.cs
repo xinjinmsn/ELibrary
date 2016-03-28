@@ -31,5 +31,18 @@ namespace ELibrary.WebAPI.Controllers
 
             return results;
         }
+
+        public OrderModel Get(DateTime orderId)
+        {
+            var userName = _identityService.CurrentUser;
+            var result = TheRepository.GetOrder(userName, orderId);
+
+            if(result == null)
+            {
+                return null;
+            }
+
+            return TheModelFactory.Create(result);
+        }
     }
 }
