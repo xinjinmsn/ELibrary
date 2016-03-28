@@ -1,5 +1,5 @@
 ﻿//#define TEST_SEED
-//#define FORCE_RECREATE
+#define FORCE_RECREATE
 
 using ELibrary.Data.Entities;
 using System;
@@ -33,13 +33,15 @@ namespace ELibrary.Data
         "DELETE FROM TagBooks",
         "DELETE FROM Book.Tag",
         "DELETE FROM Book.Book",
-        "DELETE FROM Book.Author"
+        "DELETE FROM Book.Author",
+        "DELETE FROM [Library].[Order]"
       );
 #endif
 
 
             SeedTags();
             SeedBooks();
+            SeedOrders();
 
 
         }
@@ -56,6 +58,14 @@ namespace ELibrary.Data
                 new Tag { Name = "JavaScript"}
                 );
 
+            _ctx.SaveChanges();
+        }
+
+        void SeedOrders()
+        {
+            _ctx.Orders.AddOrUpdate(x=>x.CurrentDate,
+                new Order { UserName="testuser", CurrentDate=new DateTime(2016, 1, 3) }
+                );
             _ctx.SaveChanges();
         }
 

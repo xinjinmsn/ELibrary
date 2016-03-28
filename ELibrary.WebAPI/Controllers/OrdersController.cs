@@ -1,4 +1,5 @@
 ﻿using ELibrary.Data;
+using ELibrary.WebAPI.Models;
 using ELibrary.WebAPI.Services;
 using System;
 using System.Collections.Generic;
@@ -19,5 +20,16 @@ namespace ELibrary.WebAPI.Controllers
             _identityService = identityService;
         }
 
+        public IEnumerable<OrderModel> Get()
+        {
+            var userName = _identityService.CurrentUser;
+            var results = TheRepository.GetOrders(userName)
+                .OrderBy(d=>d.CurrentDate)
+                .Take(10)
+                .ToList()
+                .Select(d=>TheModelFactory.Create(d));
+
+            return results;
+        }
     }
 }

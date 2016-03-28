@@ -38,6 +38,15 @@ namespace ELibrary.WebAPI.Models
 
         }
 
+        public OrderModel Create(Order d)
+        {
+            return new OrderModel
+            {
+                Url = _urlHelp.Link("Orders", new { orderid = d.CurrentDate }),
+                CurrentDate = d.CurrentDate
+        };
+    }
+
         public TagModel Create(Tag tag, bool withBook = true)
         {
             if(withBook)
