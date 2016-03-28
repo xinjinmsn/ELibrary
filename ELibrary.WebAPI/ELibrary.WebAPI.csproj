@@ -165,6 +165,8 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\BaseApiController.cs" />
     <Compile Include="Controllers\BooksController.cs" />
+    <Compile Include="Controllers\OrderEntriesController.cs" />
+    <Compile Include="Models\OrderEntryModel.cs" />
     <Compile Include="Models\OrderModel.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Controllers\TagsController.cs" />

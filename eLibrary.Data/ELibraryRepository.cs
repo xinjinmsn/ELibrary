@@ -61,6 +61,23 @@ namespace ELibrary.Data
             return GetOrders(userName).Where(d => d.CurrentDate == orderId.Date).FirstOrDefault();
         }
 
+        public IQueryable<OrderEntry> GetOrderEntries(string userName, DateTime orderId)
+        {
+            return _ctx.OrderEntries.Include("BookItem")
+                                    .Include("Order")
+                                    .Where(f=>f.Order.UserName==userName && f.Order.CurrentDate==orderId);
+        }
+
+        public OrderEntry GetOrderEntry(string userName, DateTime orderId, int id)
+        {
+            return _ctx.OrderEntries.Include("BookItem")
+                                    .Include("Order")
+                                    .Where(f => f.Order.UserName == userName && 
+                                           f.Order.CurrentDate == orderId && 
+                                           f.Id == id)
+                                    .FirstOrDefault();
+        }
+
         public bool SaveAll()
         {
             return _ctx.SaveChanges() > 0; 

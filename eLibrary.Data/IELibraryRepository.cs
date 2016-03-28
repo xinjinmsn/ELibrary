@@ -24,5 +24,8 @@ namespace ELibrary.Data
         IQueryable<Order> GetOrders(string userName);
         Order GetOrder(string userName, DateTime orderId);
 
+        IQueryable<OrderEntry> GetOrderEntries(string userName, DateTime orderId);
+        OrderEntry GetOrderEntry(string userName, DateTime orderId, int id);
+
     }
 }

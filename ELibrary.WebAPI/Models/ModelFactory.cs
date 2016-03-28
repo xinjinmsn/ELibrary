@@ -38,12 +38,24 @@ namespace ELibrary.WebAPI.Models
 
         }
 
+        public OrderEntryModel Create(OrderEntry entry)
+        {
+            return new OrderEntryModel
+            {
+                Url = _urlHelp.Link("OrderEntries", new { orderid = entry.Order.CurrentDate.ToString("yyyy-MM-dd"), id = entry.Id }),
+                Quantity = entry.Quantity,
+                BookTitle = entry.BookItem.Title,
+                BookUrl = _urlHelp.Link("Book", new { bookid = entry.BookItem.Id})
+            };
+        }
+
         public OrderModel Create(Order d)
         {
             return new OrderModel
             {
                 Url = _urlHelp.Link("Orders", new { orderid = d.CurrentDate.ToString("yyyy-MM-dd") }),
-                CurrentDate = d.CurrentDate
+                CurrentDate = d.CurrentDate,
+                Entries = d.Entries.Select(e=>Create(e))
         };
     }
 

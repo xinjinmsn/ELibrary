@@ -38,6 +38,14 @@ namespace ELibrary.WebAPI
                 defaults: new { controller = "orders", orderid=RouteParameter.Optional}
                 );
 
+
+            config.Routes.MapHttpRoute(
+                name: "OrderEntries",
+                routeTemplate: "api/user/orders/{orderid}/entries/{id}",
+                defaults: new { controller = "orderentries", id = RouteParameter.Optional }
+                );
+
+
             ////Remove this template with constraints
             ////Because it will overwrite id = RouteParameter.Optional
             //config.Routes.MapHttpRoute(

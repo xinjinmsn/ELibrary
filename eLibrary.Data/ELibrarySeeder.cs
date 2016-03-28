@@ -31,6 +31,7 @@ namespace ELibrary.Data
 #if TEST_SEED || FORCE_RECREATE
       ExecuteQueries(
         "DELETE FROM TagBooks",
+        "DELETE FROM [Library].[OrderEntry]",
         "DELETE FROM Book.Tag",
         "DELETE FROM Book.Book",
         "DELETE FROM Book.Author",
@@ -42,6 +43,7 @@ namespace ELibrary.Data
             SeedTags();
             SeedBooks();
             SeedOrders();
+            SeedOrderEntries();
 
 
         }
@@ -203,6 +205,42 @@ namespace ELibrary.Data
             //Save all changes
             _ctx.SaveChanges();
 
+        }
+
+
+        void SeedOrderEntries()
+        {
+            var order = _ctx.Orders.Where(f => f.UserName == "testuser" && f.CurrentDate == new DateTime(2016, 1, 3)).FirstOrDefault(); 
+
+            var entry = new OrderEntry
+            {
+                Quantity = 1
+            };
+            entry.BookItem = _ctx.Books.Where(f => f.Title == "JavaScript: The Good Parts").FirstOrDefault();
+            entry.Order = order;
+
+            _ctx.OrderEntries.Add(entry);
+
+            entry = new OrderEntry
+            {
+                Quantity = 1
+            };
+            entry.BookItem = _ctx.Books.Where(f => f.Title == "Web Design with HTML, CSS, JavaScript and jQuery Set").FirstOrDefault();
+            entry.Order = order;
+
+            _ctx.OrderEntries.Add(entry);
+
+            entry = new OrderEntry
+            {
+                Quantity = 1
+            };
+            entry.BookItem = _ctx.Books.Where(f => f.Title == "CLR via C#, Second Edition").FirstOrDefault();
+            entry.Order = order;
+
+            _ctx.OrderEntries.Add(entry);
+
+
+            _ctx.SaveChanges();
         }
 
         void ExecuteQueries(params string[] sqlStatements)
