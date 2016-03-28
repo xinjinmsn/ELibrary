@@ -19,8 +19,13 @@ namespace ELibrary.Data
         IQueryable<Tag> GetTagsForBook(int bookid);
 
         Book GetBook(int id);
+
+        //Tag
         Tag GetTag(int id);
         Tag GetTag(int bookid, int id);
+        IQueryable<Tag> GetAllTags();
+
+        //Order
         IQueryable<Order> GetOrders(string userName);
         Order GetOrder(string userName, DateTime orderId);
 

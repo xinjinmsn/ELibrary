@@ -16,14 +16,23 @@ namespace ELibrary.WebAPI.Controllers
 
         }
 
-        public TagWithBooksModel Get(int id)
+        public HttpResponseMessage Get(int id)
         {
             var result = TheRepository.GetTag(id);
 
             if (result != null)
-                return (TagWithBooksModel)TheModelFactory.Create(result);
+                return Request.CreateResponse(HttpStatusCode.OK, (TagWithBooksModel)TheModelFactory.Create(result));
 
-            return null;
+            return Request.CreateResponse(HttpStatusCode.NotFound);
+        }
+
+        public IEnumerable<TagModel> Get()
+        {
+            var results = TheRepository.GetAllTags()
+                                        .ToList()
+                                        .Select(e=>TheModelFactory.Create(e, false));
+
+            return results;
         }
     }
 }
