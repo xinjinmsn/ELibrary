@@ -32,17 +32,18 @@ namespace ELibrary.WebAPI.Controllers
             return results;
         }
 
-        public OrderModel Get(DateTime orderId)
+        public HttpResponseMessage Get(DateTime orderId)
         {
             var userName = _identityService.CurrentUser;
             var result = TheRepository.GetOrder(userName, orderId);
 
             if(result == null)
             {
-                return null;
+                return Request.CreateResponse(HttpStatusCode.NotFound);
             }
 
-            return TheModelFactory.Create(result);
+            return Request.CreateResponse(HttpStatusCode.OK, 
+                TheModelFactory.Create(result));
         }
     }
 }
