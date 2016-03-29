@@ -105,5 +105,33 @@ namespace ELibrary.WebAPI.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
             }
         }
+
+        public HttpResponseMessage Patch(DateTime orderId, int id, [FromBody] OrderEntryModel model)
+        {
+            try
+            {
+                var entity = TheRepository.GetOrderEntry(_identityService.CurrentUser, orderId, id);
+                if (entity == null)
+                    return Request.CreateResponse(HttpStatusCode.NotFound);
+
+                var parsedValue = TheModelFactory.Parse(model);
+                if (parsedValue == null)
+                    return Request.CreateResponse(HttpStatusCode.BadRequest);
+
+                if(entity.Quantity != model.Quantity)
+                {
+                    entity.Quantity = model.Quantity;
+                    if (TheRepository.SaveAll())
+                        return Request.CreateResponse(HttpStatusCode.OK);
+                }
+
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
+            }
+            catch(Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
+            }
+
+        }
     }
 }
