@@ -25,7 +25,7 @@ namespace ELibrary.WebAPI.Controllers
             var userName = _identityService.CurrentUser;
             var results = TheRepository.GetOrderEntries(userName, orderId)
                                         .ToList()
-                                        .Select(e=>TheModelFactory.Create(e));
+                                        .Select(e => TheModelFactory.Create(e));
 
             return results;
         }
@@ -35,12 +35,50 @@ namespace ELibrary.WebAPI.Controllers
             var userName = _identityService.CurrentUser;
             var result = TheRepository.GetOrderEntry(userName, orderId, id);
 
-            if(result==null)
+            if (result == null)
             {
                 Request.CreateResponse(HttpStatusCode.NotFound);
             }
 
             return Request.CreateResponse(HttpStatusCode.OK, TheModelFactory.Create(result));
+        }
+
+        public HttpResponseMessage Post(DateTime orderId, [FromBody] OrderEntryModel model)
+        {
+            try
+            {
+                var entity = TheModelFactory.Parse(model);
+
+                if (entity == null)
+                    Request.CreateErrorResponse(HttpStatusCode.NotFound, "Could not read Order Entry in body");
+
+                var order = TheRepository.GetOrder(_identityService.CurrentUser, orderId);
+
+                if (order == null)
+                    return Request.CreateResponse(HttpStatusCode.NotFound);
+
+                //Make sure it is not duplicate
+                if (order.Entries.Any(e => e.BookItem.Id == entity.BookItem.Id))
+                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Duplicate Book not allowed");
+
+                //save new entry
+                order.Entries.Add(entity);
+
+                if (TheRepository.SaveAll())
+                {
+                    return Request.CreateResponse(HttpStatusCode.Created, TheModelFactory.Create(entity));
+                }
+                else
+                {
+                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Could not save to the database");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
+            }
+
         }
     }
 }

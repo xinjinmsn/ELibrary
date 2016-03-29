@@ -1,5 +1,5 @@
 ﻿//#define TEST_SEED
-#define FORCE_RECREATE
+//#define FORCE_RECREATE
 
 using ELibrary.Data.Entities;
 using System;

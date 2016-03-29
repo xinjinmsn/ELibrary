@@ -1,4 +1,5 @@
-﻿using ELibrary.Data.Entities;
+﻿using ELibrary.Data;
+using ELibrary.Data.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,10 +12,12 @@ namespace ELibrary.WebAPI.Models
     public class ModelFactory
     {
         private UrlHelper _urlHelp;
+        private IELibraryRepository _repo;
 
-        public ModelFactory(HttpRequestMessage request)
+        public ModelFactory(HttpRequestMessage request, IELibraryRepository repo)
         {
             _urlHelp = new UrlHelper(request);
+            _repo = repo;
         }
         public BookModel Create(Book book, bool withTags = true)
         {
@@ -47,6 +50,35 @@ namespace ELibrary.WebAPI.Models
                 BookTitle = entry.BookItem.Title,
                 BookUrl = _urlHelp.Link("Book", new { bookid = entry.BookItem.Id})
             };
+        }
+
+        public OrderEntry Parse(OrderEntryModel model)
+        {
+            try
+            {
+                var entry = new OrderEntry();
+                if(model.Quantity!=default(int))
+                {
+                    entry.Quantity = model.Quantity;
+                }
+
+                if(!string.IsNullOrWhiteSpace(model.BookUrl))
+                {
+                    var uri = new Uri(model.BookUrl);
+                    var bookId = int.Parse(uri.Segments.Last());
+                    var book = _repo.GetBook(bookId);
+                    entry.BookItem = book;
+
+                    return entry;
+                }
+
+                return entry;
+
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         public OrderModel Create(Order d)
