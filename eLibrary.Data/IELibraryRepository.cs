@@ -32,5 +32,6 @@ namespace ELibrary.Data
         IQueryable<OrderEntry> GetOrderEntries(string userName, DateTime orderId);
         OrderEntry GetOrderEntry(string userName, DateTime orderId, int id);
 
+        bool DeleteOrderEntry(int id);
     }
 }

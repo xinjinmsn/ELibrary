@@ -80,5 +80,30 @@ namespace ELibrary.WebAPI.Controllers
             }
 
         }
+
+        public HttpResponseMessage Delete (DateTime orderId, int id)
+        {
+            try
+            {
+                if(TheRepository.GetOrderEntries(_identityService.CurrentUser, orderId).Any(f=>f.Id == id)==false)
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound);
+                }
+
+                if(TheRepository.DeleteOrderEntry(id) && TheRepository.SaveAll())
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK);
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.BadRequest);
+                }
+
+            }
+            catch(Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
+            }
+        }
     }
 }

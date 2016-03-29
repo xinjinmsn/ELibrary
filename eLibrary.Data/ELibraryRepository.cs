@@ -83,6 +83,27 @@ namespace ELibrary.Data
                                     .FirstOrDefault();
         }
 
+        public bool DeleteOrderEntry(int id)
+        {
+            try
+            {
+                var entity = _ctx.OrderEntries.Where(f=>f.Id==id).FirstOrDefault();
+
+                if(entity!=null)
+                {
+                    _ctx.OrderEntries.Remove(entity);
+                    return true;
+                }
+               
+            }
+            catch
+            {
+                //TODO logging
+            }
+
+            return false;
+        }
+
         public bool SaveAll()
         {
             return _ctx.SaveChanges() > 0; 
