@@ -57,7 +57,10 @@ namespace ELibrary.Data
                 new Tag { Name = "Software Design & Engineering" },
                 new Tag { Name = "Enterprise Applications" },
                 new Tag { Name = "Web Design" },
-                new Tag { Name = "JavaScript"}
+                new Tag { Name = "JavaScript"},
+                new Tag { Name = "Data Structures" },
+                new Tag { Name = "Windows Server" },
+                new Tag { Name = "Unix" }
                 );
 
             _ctx.SaveChanges();
@@ -74,23 +77,6 @@ namespace ELibrary.Data
         void SeedBooks()
         {
 
-            //var book = new Book
-            //{
-            //    Title = "CLR via C#, Second Edition",
-            //    Author = new Author { Name = "Jeffrey Richter" },
-            //    Pages = 736,
-            //    Price = 39.99m,
-            //    Stock = 9,
-            //    Year = 2006,
-            //};
-
-            //var tag = _ctx.Tags.Where(f => f.Name == "Programming").FirstOrDefault();
-
-            //tag.Books.Add(book);
-            //book.Tags.Add(tag);
-
-
-
             //Add book CLR via C#, Second Edition
             var book = new Book
             {
@@ -99,7 +85,7 @@ namespace ELibrary.Data
                 Pages = 736,
                 Price = 39.99m,
                 Stock = 9,
-                Year = 2006,
+                Year = 2006
             };
 
             var tag = _ctx.Tags.Where(f => f.Name == "Programming").FirstOrDefault();
@@ -125,7 +111,7 @@ namespace ELibrary.Data
                 Pages = 960,
                 Price = 34.11m,
                 Stock = 7,
-                Year = 2004,
+                Year = 2004
             };
 
             tag = _ctx.Tags.Where(f => f.Name == "Software Design & Engineering").FirstOrDefault();
@@ -147,7 +133,7 @@ namespace ELibrary.Data
                 Pages = 1152,
                 Price = 33.95m,
                 Stock = 7,
-                Year = 2014,
+                Year = 2014
             };
 
             tag = _ctx.Tags.Where(f => f.Name == "Programming").FirstOrDefault();
@@ -168,7 +154,7 @@ namespace ELibrary.Data
                 Pages = 176,
                 Price = 20.81m,
                 Stock = 11,
-                Year = 2008,
+                Year = 2008
             };
 
             tag = _ctx.Tags.Where(f => f.Name == "Programming").FirstOrDefault();
@@ -193,10 +179,158 @@ namespace ELibrary.Data
                 Pages = 464,
                 Price = 33.53m,
                 Stock = 5,
-                Year = 2008,
+                Year = 2008
             };
 
             tag = _ctx.Tags.Where(f => f.Name == "Software Design & Engineering").FirstOrDefault();
+            tag.Books.Add(book);
+            book.Tags.Add(tag);
+
+            _ctx.Books.Add(book);
+
+
+            //Add book Cracking the Coding Interview, 6th Edition: 189 Programming Questions and Solutions
+
+            book = new Book
+            {
+                Title = "Cracking the Coding Interview, 6th Edition: 189 Programming Questions and Solutions",
+                Author = new Author { Name = "Gayle Laakmann McDowell" },
+                Pages = 687,
+                Price = 31.70m,
+                Stock = 15,
+                Year = 2015
+            };
+
+            tag = _ctx.Tags.Where(f => f.Name == "Programming").FirstOrDefault();
+            tag.Books.Add(book);
+            book.Tags.Add(tag);
+
+
+            tag = _ctx.Tags.Where(f => f.Name == "Data Structures").FirstOrDefault();
+            tag.Books.Add(book);
+            book.Tags.Add(tag);
+
+            _ctx.Books.Add(book);
+
+
+            //Add book Windows Internals: Including Windows Server 2008 and Windows Vista, Fifth Edition
+
+            book = new Book
+            {
+                Title = "Windows Internals: Including Windows Server 2008 and Windows Vista, Fifth Edition",
+                Author = new Author { Name = "Mark Russinovich" },
+                Pages = 1232,
+                Price = 43.43m,
+                Stock = 5,
+                Year = 2009
+            };
+
+            tag = _ctx.Tags.Where(f => f.Name == "Windows Server").FirstOrDefault();
+            tag.Books.Add(book);
+            book.Tags.Add(tag);
+
+
+            _ctx.Books.Add(book);
+
+
+            //Add book Learn Windows PowerShell in a Month of Lunches
+
+            book = new Book
+            {
+                Title = "Learn Windows PowerShell in a Month of Lunches",
+                Author = new Author { Name = "Don Jones" },
+                Pages = 368,
+                Price = 34.70m,
+                Stock = 9,
+                Year = 2012
+            };
+
+            tag = _ctx.Tags.Where(f => f.Name == "Programming").FirstOrDefault();
+            tag.Books.Add(book);
+            book.Tags.Add(tag);
+
+
+            _ctx.Books.Add(book);
+
+
+            //Add book The Linux Programming Interface: A Linux and UNIX System Programming Handbook
+
+            book = new Book
+            {
+                Title = "The Linux Programming Interface: A Linux and UNIX System Programming Handbook",
+                Author = new Author { Name = "Michael Kerrisk" },
+                Pages = 1552,
+                Price = 63.25m,
+                Stock = 21,
+                Year = 2010
+            };
+
+            tag = _ctx.Tags.Where(f => f.Name == "Programming").FirstOrDefault();
+            tag.Books.Add(book);
+            book.Tags.Add(tag);
+
+            tag = _ctx.Tags.Where(f => f.Name == "Unix").FirstOrDefault();
+            tag.Books.Add(book);
+            book.Tags.Add(tag);
+
+            _ctx.Books.Add(book);
+
+
+            //Add book The Design and Implementation of the FreeBSD Operating System (2nd Edition) 
+
+            book = new Book
+            {
+                Title = "The Design and Implementation of the FreeBSD Operating System (2nd Edition)",
+                Author = new Author { Name = "Marshall Kirk McKusick" },
+                Pages = 928,
+                Price = 56.17m,
+                Stock = 11,
+                Year = 2014
+            };
+
+            tag = _ctx.Tags.Where(f => f.Name == "Unix").FirstOrDefault();
+            tag.Books.Add(book);
+            book.Tags.Add(tag);
+
+            _ctx.Books.Add(book);
+
+
+            //Add book Network Programming with Perl  
+
+            book = new Book
+            {
+                Title = "Network Programming with Perl",
+                Author = new Author { Name = "Lincoln D. Stein" },
+                Pages = 784,
+                Price = 36.84m,
+                Stock = 4,
+                Year = 2001
+            };
+
+            tag = _ctx.Tags.Where(f => f.Name == "Programming").FirstOrDefault();
+            tag.Books.Add(book);
+            book.Tags.Add(tag);
+
+            _ctx.Books.Add(book);
+
+
+            //Add book Understanding the Linux Kernel, Third Edition 
+
+            book = new Book
+            {
+                Title = "Understanding the Linux Kernel, Third Edition",
+                Author = new Author { Name = "Daniel P. Bovet" },
+                Pages = 944,
+                Price = 37.67m,
+                Stock = 3,
+                Year = 2005
+            };
+
+            tag = _ctx.Tags.Where(f => f.Name == "Unix").FirstOrDefault();
+            tag.Books.Add(book);
+            book.Tags.Add(tag);
+
+            tag = _ctx.Tags.Where(f => f.Name == "Programming").FirstOrDefault();
             tag.Books.Add(book);
             book.Tags.Add(tag);
 

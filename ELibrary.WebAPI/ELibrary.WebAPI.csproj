@@ -166,6 +166,7 @@
     <Compile Include="Controllers\BaseApiController.cs" />
     <Compile Include="Controllers\BooksController.cs" />
     <Compile Include="Controllers\OrderEntriesController.cs" />
+    <Compile Include="Controllers\OrderSummaryController.cs" />
     <Compile Include="Models\OrderEntryModel.cs" />
     <Compile Include="Models\OrderModel.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
@@ -177,6 +178,7 @@
     <Compile Include="Models\BookModel.cs" />
     <Compile Include="Models\BookWithTagsModel.cs" />
     <Compile Include="Models\ModelFactory.cs" />
+    <Compile Include="Models\OrderSummaryModel.cs" />
     <Compile Include="Models\TagModel.cs" />
     <Compile Include="Models\TagWithBooksModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

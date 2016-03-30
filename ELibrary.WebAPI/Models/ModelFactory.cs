@@ -41,6 +41,17 @@ namespace ELibrary.WebAPI.Models
 
         }
 
+        public OrderSummaryModel CreateSummary(Order order)
+        {
+            return new OrderSummaryModel
+            {
+                OrderDate = order.CurrentDate,
+                CostSum = order.Entries.Sum(f => f.BookItem.Price * f.Quantity),
+                TotalCount = order.Entries.Sum(f =>f.Quantity)
+                
+            };
+        }
+
         public OrderEntryModel Create(OrderEntry entry)
         {
             return new OrderEntryModel
