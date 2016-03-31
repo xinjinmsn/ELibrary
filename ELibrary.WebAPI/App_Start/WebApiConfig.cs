@@ -52,6 +52,12 @@ namespace ELibrary.WebAPI
                 defaults: new { controller = "ordersummary"}
                 );
 
+            config.Routes.MapHttpRoute(
+                name: "ClearDB",
+                routeTemplate: "api/library/cleardb",
+                defaults: new { controller = "cleardb" }
+                );
+
 
             ////Remove this template with constraints
             ////Because it will overwrite id = RouteParameter.Optional

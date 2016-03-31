@@ -11,6 +11,7 @@ namespace ELibrary.Data
     {
         //General
         bool SaveAll();
+        void ClearDB();
 
         // Book
         IQueryable<Book> GetAllBooks();

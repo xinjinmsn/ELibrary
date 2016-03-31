@@ -104,6 +104,17 @@ namespace ELibrary.Data
             return false;
         }
 
+        public void ClearDB()
+        {
+            _ctx.Tags.RemoveRange(_ctx.Tags.ToList());
+            _ctx.Books.RemoveRange(_ctx.Books.ToList());
+            _ctx.Orders.RemoveRange(_ctx.Orders.ToList());
+            _ctx.OrderEntries.RemoveRange(_ctx.OrderEntries.ToList());
+            _ctx.Authors.RemoveRange(_ctx.Authors.ToList());
+
+            _ctx.SaveChanges();
+        }
+
         public bool SaveAll()
         {
             return _ctx.SaveChanges() > 0; 
