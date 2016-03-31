@@ -113,6 +113,8 @@ namespace ELibrary.Data
             _ctx.Authors.RemoveRange(_ctx.Authors.ToList());
 
             _ctx.SaveChanges();
+
+            new ELibrarySeeder(_ctx).Seed();
         }
 
         public bool SaveAll()
