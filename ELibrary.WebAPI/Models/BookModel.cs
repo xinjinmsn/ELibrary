@@ -10,6 +10,7 @@ namespace ELibrary.WebAPI.Models
     {
         public string Url { get; set; }
         public string Title { get; set; }
+        public string Description { get; set; }
         public int Year { get; set; }
         public Author Author { get; set; }
 

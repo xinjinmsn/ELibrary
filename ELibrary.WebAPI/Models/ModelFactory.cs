@@ -26,6 +26,7 @@ namespace ELibrary.WebAPI.Models
                 {
                     Url = _urlHelp.Link("Book", new { bookid=book.Id}),
                     Title = book.Title,
+                    Description = book.Description,
                     Year = book.Year,
                     Author = book.Author,
                     Tags = book.Tags.Select(m => Create(m, false))
@@ -35,6 +36,7 @@ namespace ELibrary.WebAPI.Models
                 {
                     Url = _urlHelp.Link("Book", new { bookid = book.Id }),
                     Title = book.Title,
+                    Description = book.Description,
                     Year = book.Year,
                     Author = book.Author,
                 };
