@@ -21,15 +21,16 @@ namespace ELibrary.WebAPI.Models
         }
         public BookModel Create(Book book, bool withTags = true)
         {
-            if(withTags)
+            if (withTags)
                 return new BookWithTagsModel
                 {
-                    Url = _urlHelp.Link("Book", new { bookid=book.Id}),
+                    Url = _urlHelp.Link("Book", new { bookid = book.Id }),
                     Title = book.Title,
                     Description = book.Description,
                     Year = book.Year,
                     Author = book.Author,
-                    Tags = book.Tags.Select(m => Create(m, false))
+                    Tags = book.Tags.Select(m => Create(m, false)),
+                    InStock = book.Stock > 0 ? true : false
                 };
             else
                 return new BookModel
@@ -39,6 +40,7 @@ namespace ELibrary.WebAPI.Models
                     Description = book.Description,
                     Year = book.Year,
                     Author = book.Author,
+                    InStock = book.Stock > 0 ? true : false
                 };
 
         }

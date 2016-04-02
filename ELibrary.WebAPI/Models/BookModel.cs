@@ -14,5 +14,7 @@ namespace ELibrary.WebAPI.Models
         public int Year { get; set; }
         public Author Author { get; set; }
 
+        public bool InStock { get; set; }
+
     }
 }
