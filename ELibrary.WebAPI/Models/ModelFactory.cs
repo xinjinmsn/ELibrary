@@ -30,7 +30,8 @@ namespace ELibrary.WebAPI.Models
                     Year = book.Year,
                     Author = book.Author,
                     Tags = book.Tags.Select(m => Create(m, false)),
-                    InStock = book.Stock > 0 ? true : false
+                    InStock = book.Stock > 0 ? true : false,
+                    Price = book.Price
                 };
             else
                 return new BookModel
@@ -40,7 +41,8 @@ namespace ELibrary.WebAPI.Models
                     Description = book.Description,
                     Year = book.Year,
                     Author = book.Author,
-                    InStock = book.Stock > 0 ? true : false
+                    InStock = book.Stock > 0 ? true : false,
+                    Price = book.Price
                 };
 
         }

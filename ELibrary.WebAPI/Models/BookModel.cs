@@ -15,6 +15,8 @@ namespace ELibrary.WebAPI.Models
         public Author Author { get; set; }
 
         public bool InStock { get; set; }
+        public decimal Price { get; set; }
+
 
     }
 }
