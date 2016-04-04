@@ -86,7 +86,8 @@ namespace ELibrary.Data
                 Pages = 736,
                 Price = 39.99m,
                 Stock = 9,
-                Year = 2006
+                Year = 2006,
+                Image = "clrviacsharp.jpg"
             };
 
             var tag = _ctx.Tags.Where(f => f.Name == "Programming").FirstOrDefault();
@@ -113,7 +114,8 @@ namespace ELibrary.Data
                 Pages = 960,
                 Price = 34.11m,
                 Stock = 7,
-                Year = 2004
+                Year = 2004,
+                Image = "codecomplete.jpg"
             };
 
             tag = _ctx.Tags.Where(f => f.Name == "Software Design & Engineering").FirstOrDefault();
@@ -136,7 +138,8 @@ namespace ELibrary.Data
                 Pages = 1152,
                 Price = 33.95m,
                 Stock = 7,
-                Year = 2014
+                Year = 2014,
+                Image = "webdesign.jpg"
             };
 
             tag = _ctx.Tags.Where(f => f.Name == "Programming").FirstOrDefault();
@@ -158,7 +161,8 @@ namespace ELibrary.Data
                 Pages = 176,
                 Price = 20.81m,
                 Stock = 11,
-                Year = 2008
+                Year = 2008,
+                Image = "javascript_thegoodparts.jpg"
             };
 
             tag = _ctx.Tags.Where(f => f.Name == "Programming").FirstOrDefault();
@@ -184,7 +188,8 @@ namespace ELibrary.Data
                 Pages = 464,
                 Price = 33.53m,
                 Stock = 5,
-                Year = 2008
+                Year = 2008,
+                Image = "cleancode.jpg"
             };
 
             tag = _ctx.Tags.Where(f => f.Name == "Software Design & Engineering").FirstOrDefault();
@@ -204,7 +209,8 @@ namespace ELibrary.Data
                 Pages = 687,
                 Price = 31.70m,
                 Stock = 15,
-                Year = 2015
+                Year = 2015,
+                Image = "crackingcodeinterview.jpg"
             };
 
             tag = _ctx.Tags.Where(f => f.Name == "Programming").FirstOrDefault();
@@ -229,7 +235,8 @@ namespace ELibrary.Data
                 Pages = 1232,
                 Price = 43.43m,
                 Stock = 5,
-                Year = 2009
+                Year = 2009,
+                Image = "windowsinternal.jpg"
             };
 
             tag = _ctx.Tags.Where(f => f.Name == "Windows Server").FirstOrDefault();
@@ -250,7 +257,8 @@ namespace ELibrary.Data
                 Pages = 368,
                 Price = 34.70m,
                 Stock = 9,
-                Year = 2012
+                Year = 2012,
+                Image = "learnpowershell.jpg"
             };
 
             tag = _ctx.Tags.Where(f => f.Name == "Programming").FirstOrDefault();
@@ -271,7 +279,8 @@ namespace ELibrary.Data
                 Pages = 1552,
                 Price = 63.25m,
                 Stock = 21,
-                Year = 2010
+                Year = 2010,
+                Image = "linuxprogramminginterface.jpg"
             };
 
             tag = _ctx.Tags.Where(f => f.Name == "Programming").FirstOrDefault();
@@ -295,7 +304,8 @@ namespace ELibrary.Data
                 Pages = 928,
                 Price = 56.17m,
                 Stock = 11,
-                Year = 2014
+                Year = 2014,
+                Image = "designoffreebsd.jpg"
             };
 
             tag = _ctx.Tags.Where(f => f.Name == "Unix").FirstOrDefault();
@@ -315,7 +325,8 @@ namespace ELibrary.Data
                 Pages = 784,
                 Price = 36.84m,
                 Stock = 4,
-                Year = 2001
+                Year = 2001,
+                Image = "networkprogrammingperl.jpg"
             };
 
             tag = _ctx.Tags.Where(f => f.Name == "Programming").FirstOrDefault();
@@ -335,7 +346,8 @@ namespace ELibrary.Data
                 Pages = 944,
                 Price = 37.67m,
                 Stock = 3,
-                Year = 2005
+                Year = 2005,
+                Image = "understandlinuxkernel.jpg"
             };
 
             tag = _ctx.Tags.Where(f => f.Name == "Unix").FirstOrDefault();

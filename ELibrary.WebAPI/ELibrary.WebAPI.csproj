@@ -143,6 +143,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="images\cleancode.jpg" />
+    <Content Include="images\clrviac#.jpg" />
+    <Content Include="images\codecomplete.jpg" />
+    <Content Include="images\crackingcodeinterview.jpg" />
+    <Content Include="images\designoffreebsd.jpg" />
+    <Content Include="images\javascript_thegoodparts.jpg" />
+    <Content Include="images\learnpowershell.jpg" />
+    <Content Include="images\linuxprogramminginterface.jpg" />
+    <Content Include="images\networkprogrammingperl.jpg" />
+    <Content Include="images\understandlinuxkernel.jpg" />
+    <Content Include="images\webdesign.jpg" />
+    <Content Include="images\windowsinternal.jpg" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

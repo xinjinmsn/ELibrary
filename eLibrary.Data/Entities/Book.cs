@@ -24,8 +24,11 @@ namespace ELibrary.Data.Entities
 
         public int Stock { get; set; }
 
+        public string Image { get; set; }
+
         public Author Author { get; set; }
         public virtual ICollection<Tag> Tags {get;set;}
+
 
     }
 }
