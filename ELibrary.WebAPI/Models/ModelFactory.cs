@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Web;
+using System.Web.Hosting;
 using System.Web.Http.Routing;
 
 namespace ELibrary.WebAPI.Models
@@ -21,7 +22,7 @@ namespace ELibrary.WebAPI.Models
         }
         public BookModel Create(Book book, bool withTags = true)
         {
-            
+
 
             if (withTags)
                 return new BookWithTagsModel
@@ -34,7 +35,7 @@ namespace ELibrary.WebAPI.Models
                     Tags = book.Tags.Select(m => Create(m, false)),
                     InStock = book.Stock > 0 ? true : false,
                     Price = book.Price,
-                    ImageUrl = string.Format("/images/{0}", book.Image)
+                    ImageUrl = _urlHelp.Link("Images", new { file = book.Image})
                 };
             else
                 return new BookModel
@@ -46,7 +47,7 @@ namespace ELibrary.WebAPI.Models
                     Author = book.Author,
                     InStock = book.Stock > 0 ? true : false,
                     Price = book.Price,
-                    ImageUrl = string.Format("/images/{0}", book.Image)
+                    ImageUrl = _urlHelp.Link("Images", new { file = book.Image })
                 };
 
         }

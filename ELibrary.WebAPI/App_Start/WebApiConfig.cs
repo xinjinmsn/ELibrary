@@ -15,7 +15,6 @@ namespace ELibrary.WebAPI
         {
             // Web API configuration and services
 
-            
 
             config.Routes.MapHttpRoute(
                 name: "Book",
@@ -61,7 +60,10 @@ namespace ELibrary.WebAPI
                 defaults: new { controller = "cleardb" }
                 );
 
-
+            config.Routes.MapHttpRoute(
+                name: "Images",
+                routeTemplate: "images/{file}"
+                );
             ////Remove this template with constraints
             ////Because it will overwrite id = RouteParameter.Optional
             //config.Routes.MapHttpRoute(
