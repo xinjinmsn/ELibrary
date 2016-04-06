@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net.Http.Headers;
 using System.Web;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace ELibrary.WebAPI
 {
@@ -13,6 +14,8 @@ namespace ELibrary.WebAPI
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
+
+            
 
             config.Routes.MapHttpRoute(
                 name: "Book",
@@ -76,6 +79,10 @@ namespace ELibrary.WebAPI
             jsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
 
             //jsonFormatter.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+
+
+            //Add Cors Support
+            config.EnableCors(new EnableCorsAttribute("*","*","*"));
 
         }
     }
