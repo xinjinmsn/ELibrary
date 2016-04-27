@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Serialization;
+﻿using ELibrary.WebAPI.Filters;
+using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -86,6 +87,9 @@ namespace ELibrary.WebAPI
             //Add Cors Support
             config.EnableCors(new EnableCorsAttribute("*","*","*"));
 
+#if !DEBUG
+            config.Filters.Add(new RequireHttpsAttribute());
+#endif
         }
     }
 }
