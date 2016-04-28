@@ -7,6 +7,7 @@ using System.Net.Http.Headers;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using WebApiContrib.Formatting.Jsonp;
 
 namespace ELibrary.WebAPI
 {
@@ -82,6 +83,10 @@ namespace ELibrary.WebAPI
             jsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
 
             //jsonFormatter.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+
+            //Add JSONP Support
+            var jsonpFormatter = new JsonpMediaTypeFormatter(jsonFormatter);
+            config.Formatters.Insert(0, jsonpFormatter);
 
 
             //Add Cors Support
