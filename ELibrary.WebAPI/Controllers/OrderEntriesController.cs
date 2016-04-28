@@ -20,116 +20,116 @@ namespace ELibrary.WebAPI.Controllers
             _identityService = identityService;
         }
 
-        public IEnumerable<OrderEntryModel> Get(DateTime orderId)
+        public IHttpActionResult Get(DateTime orderId)
         {
             var userName = _identityService.CurrentUser;
             var results = TheRepository.GetOrderEntries(userName, orderId)
                                         .ToList()
                                         .Select(e => TheModelFactory.Create(e));
 
-            return results;
+            return Ok(results);
         }
 
-        public HttpResponseMessage Get(DateTime orderId, int id)
+        public IHttpActionResult Get(DateTime orderId, int id)
         {
             var userName = _identityService.CurrentUser;
             var result = TheRepository.GetOrderEntry(userName, orderId, id);
 
             if (result == null)
             {
-                Request.CreateResponse(HttpStatusCode.NotFound);
+                NotFound();
             }
 
-            return Request.CreateResponse(HttpStatusCode.OK, TheModelFactory.Create(result));
+            return Ok(TheModelFactory.Create(result));
         }
 
-        public HttpResponseMessage Post(DateTime orderId, [FromBody] OrderEntryModel model)
+        public IHttpActionResult Post(DateTime orderId, [FromBody] OrderEntryModel model)
         {
             try
             {
                 var entity = TheModelFactory.Parse(model);
 
                 if (entity == null)
-                    Request.CreateErrorResponse(HttpStatusCode.NotFound, "Could not read Order Entry in body");
+                    Content(HttpStatusCode.NotFound, "Could not read Order Entry in body");
 
                 var order = TheRepository.GetOrder(_identityService.CurrentUser, orderId);
 
                 if (order == null)
-                    return Request.CreateResponse(HttpStatusCode.NotFound);
+                    return NotFound();
 
                 //Make sure it is not duplicate
                 if (order.Entries.Any(e => e.BookItem.Id == entity.BookItem.Id))
-                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Duplicate Book not allowed");
+                    return Content(HttpStatusCode.BadRequest, "Duplicate Book not allowed");
 
                 //save new entry
                 order.Entries.Add(entity);
 
                 if (TheRepository.SaveAll())
                 {
-                    return Request.CreateResponse(HttpStatusCode.Created, TheModelFactory.Create(entity));
+                    return Content(HttpStatusCode.Created, TheModelFactory.Create(entity));
                 }
                 else
                 {
-                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Could not save to the database");
+                    return Content(HttpStatusCode.BadRequest, "Could not save to the database");
                 }
 
             }
             catch (Exception ex)
             {
-                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
+                return Content(HttpStatusCode.BadRequest, ex);
             }
 
         }
 
-        public HttpResponseMessage Delete (DateTime orderId, int id)
+        public IHttpActionResult Delete (DateTime orderId, int id)
         {
             try
             {
                 if(TheRepository.GetOrderEntries(_identityService.CurrentUser, orderId).Any(f=>f.Id == id)==false)
                 {
-                    return Request.CreateResponse(HttpStatusCode.NotFound);
+                    return NotFound();
                 }
 
                 if(TheRepository.DeleteOrderEntry(id) && TheRepository.SaveAll())
                 {
-                    return Request.CreateResponse(HttpStatusCode.OK);
+                    return Ok();
                 }
                 else
                 {
-                    return Request.CreateResponse(HttpStatusCode.BadRequest);
+                    return BadRequest();
                 }
 
             }
             catch(Exception ex)
             {
-                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
+                return Content(HttpStatusCode.BadRequest, ex);
             }
         }
 
-        public HttpResponseMessage Patch(DateTime orderId, int id, [FromBody] OrderEntryModel model)
+        public IHttpActionResult Patch(DateTime orderId, int id, [FromBody] OrderEntryModel model)
         {
             try
             {
                 var entity = TheRepository.GetOrderEntry(_identityService.CurrentUser, orderId, id);
                 if (entity == null)
-                    return Request.CreateResponse(HttpStatusCode.NotFound);
+                    return NotFound();
 
                 var parsedValue = TheModelFactory.Parse(model);
                 if (parsedValue == null)
-                    return Request.CreateResponse(HttpStatusCode.BadRequest);
+                    return BadRequest();
 
                 if(entity.Quantity != model.Quantity)
                 {
                     entity.Quantity = model.Quantity;
                     if (TheRepository.SaveAll())
-                        return Request.CreateResponse(HttpStatusCode.OK);
+                        return Ok();
                 }
 
-                return Request.CreateResponse(HttpStatusCode.BadRequest);
+                return BadRequest();
             }
             catch(Exception ex)
             {
-                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
+                return Content(HttpStatusCode.BadRequest, ex);
             }
 
         }
