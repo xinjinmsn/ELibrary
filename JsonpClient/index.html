@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>JSON Client Demo</title>
+</head>
+
+<body>
+
+
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script>
+        $.ajax({  
+           type: "GET",  
+              url: "http://localhost:9294/api/library/books",  
+              contentType: "application/javascript",  
+              dataType: "jsonp",
+              jsonpCallback: "foo"  
+              });  
+
+        function foo(args) {  
+            alert(args);  
+        }
+    </script>
+
+</body>
+
+</html>
