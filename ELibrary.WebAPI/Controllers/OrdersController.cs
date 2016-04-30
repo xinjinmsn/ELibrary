@@ -1,4 +1,5 @@
 ﻿using ELibrary.Data;
+using ELibrary.WebAPI.Filters;
 using ELibrary.WebAPI.Models;
 using ELibrary.WebAPI.Services;
 using System;
@@ -10,6 +11,8 @@ using System.Web.Http;
 
 namespace ELibrary.WebAPI.Controllers
 {
+    [IdentityBasicAuthentication]
+    [Authorize]
     public class OrdersController : BaseApiController
     {
         private IELibraryIdentityService _identityService;
