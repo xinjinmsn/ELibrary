@@ -95,6 +95,9 @@ namespace ELibrary.WebAPI
 #if !DEBUG
             config.Filters.Add(new RequireHttpsAttribute());
 #endif
+
+            //Disable Host-Level Authentication
+            config.SuppressHostPrincipal();
         }
     }
 }
