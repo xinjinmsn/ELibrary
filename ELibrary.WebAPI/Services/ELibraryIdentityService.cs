@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Web;
 
 namespace ELibrary.WebAPI.Services
@@ -11,7 +12,7 @@ namespace ELibrary.WebAPI.Services
         {
             get
             {
-                return "testuser";
+                return Thread.CurrentPrincipal.Identity.Name;
             }
         }
     }
