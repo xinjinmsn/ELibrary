@@ -67,7 +67,23 @@ namespace ELibrary.WebAPI.Filters
 
         public Task ChallengeAsync(HttpAuthenticationChallengeContext context, CancellationToken cancellationToken)
         {
+            var request = context.Request;
             var challenge = new AuthenticationHeaderValue("Basic");
+
+            IEnumerable<string> headers;
+
+            if (request.Headers.TryGetValues("X-Requested-With", out headers))
+            {
+                var ajaxHeader = headers.FirstOrDefault();
+
+                if (!string.IsNullOrEmpty(ajaxHeader))
+                {
+                    if (ajaxHeader.Equals("XMLHttpRequest", StringComparison.OrdinalIgnoreCase))
+                    {
+                        challenge = new AuthenticationHeaderValue("xBasic");
+                    }
+                }
+            }
 
             context.Result = new AddChallengeOnUnauthorizedResult(challenge, context.Result);
 
