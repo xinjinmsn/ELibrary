@@ -30,10 +30,7 @@ namespace ELibrary.WebAPI.Models
                     Url = _urlHelp.Link("Book", new { bookid = book.Id }),
                     Title = book.Title,
                     Description = book.Description,
-                    Year = book.Year,
-                    Author = book.Author,
                     Tags = book.Tags.Select(m => Create(m, false)),
-                    InStock = book.Stock > 0 ? true : false,
                     Price = book.Price,
                     ImageUrl = _urlHelp.Link("Images", new { file = book.Image})
                 };
@@ -43,9 +40,6 @@ namespace ELibrary.WebAPI.Models
                     Url = _urlHelp.Link("Book", new { bookid = book.Id }),
                     Title = book.Title,
                     Description = book.Description,
-                    Year = book.Year,
-                    Author = book.Author,
-                    InStock = book.Stock > 0 ? true : false,
                     Price = book.Price,
                     ImageUrl = _urlHelp.Link("Images", new { file = book.Image })
                 };

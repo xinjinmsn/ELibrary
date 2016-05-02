@@ -11,10 +11,7 @@ namespace ELibrary.WebAPI.Models
         public string Url { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
-        public int Year { get; set; }
-        public Author Author { get; set; }
 
-        public bool InStock { get; set; }
         public decimal Price { get; set; }
 
         public string ImageUrl { get; set; }
