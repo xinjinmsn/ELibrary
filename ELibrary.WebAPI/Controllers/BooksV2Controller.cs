@@ -39,8 +39,8 @@ namespace ELibrary.WebAPI.Controllers
             var totalPages = Math.Ceiling((double)totalCount/PAGE_SIZE);
 
             var helper = new UrlHelper(Request);
-            var prevUrl = page > 0 ? helper.Link("Book", new { page=page-1}): "";
-            var nextUrl = page < totalPages - 1 ? helper.Link("Book", new { page = page + 1}): "";
+            var prevUrl = page > 0 ? helper.Link("BookV2", new { page=page-1}): "";
+            var nextUrl = page < totalPages - 1 ? helper.Link("BookV2", new { page = page + 1}): "";
 
             var results = baseQuery.Skip(PAGE_SIZE*page)
                             .Take(PAGE_SIZE)
