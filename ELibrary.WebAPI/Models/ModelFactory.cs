@@ -46,6 +46,35 @@ namespace ELibrary.WebAPI.Models
 
         }
 
+        internal BookV2Model Create2(Book book, bool withTags = true)
+        {
+            if (withTags)
+                return new BookWithTagsV2Model
+                {
+                    Url = _urlHelp.Link("Book", new { bookid = book.Id }),
+                    Title = book.Title,
+                    Description = book.Description,
+                    Tags = book.Tags.Select(m => Create(m, false)),
+                    Price = book.Price,
+                    Year = book.Year,
+                    Author = book.Author,
+                    InStock = book.Stock > 0 ? true:false,
+                    ImageUrl = _urlHelp.Link("Images", new { file = book.Image })
+                };
+            else
+                return new BookV2Model
+                {
+                    Url = _urlHelp.Link("Book", new { bookid = book.Id }),
+                    Title = book.Title,
+                    Description = book.Description,
+                    Price = book.Price,
+                    Year = book.Year,
+                    Author = book.Author,
+                    InStock = book.Stock > 0 ? true : false,
+                    ImageUrl = _urlHelp.Link("Images", new { file = book.Image })
+                };
+        }
+
         public OrderSummaryModel CreateSummary(Order order)
         {
             return new OrderSummaryModel

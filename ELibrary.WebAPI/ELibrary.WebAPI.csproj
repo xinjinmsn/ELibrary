@@ -191,12 +191,15 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\BaseApiController.cs" />
+    <Compile Include="Controllers\BooksV2Controller.cs" />
     <Compile Include="Controllers\BooksController.cs" />
     <Compile Include="Controllers\ClearDBController.cs" />
     <Compile Include="Controllers\OrderEntriesController.cs" />
     <Compile Include="Controllers\OrderSummaryController.cs" />
     <Compile Include="Filters\IdentityBasicAuthenticationAttribute.cs" />
     <Compile Include="Filters\RequireHttpsAttribute.cs" />
+    <Compile Include="Models\BookV2Model.cs" />
+    <Compile Include="Models\BookWithTagsV2Model.cs" />
     <Compile Include="Models\OrderEntryModel.cs" />
     <Compile Include="Models\OrderModel.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
