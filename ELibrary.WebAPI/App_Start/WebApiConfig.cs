@@ -93,7 +93,7 @@ namespace ELibrary.WebAPI
             config.EnableCors(new EnableCorsAttribute("*","*","*"));
 
 #if !DEBUG
-            config.Filters.Add(new RequireHttpsAttribute());
+            //config.Filters.Add(new RequireHttpsAttribute());
 #endif
 
             //Disable Host-Level Authentication
