@@ -126,10 +126,10 @@ namespace ELibrary.WebAPI
 
             //Add CacheCow cache support
 
-            var connString = ConfigurationManager.ConnectionStrings["ELibraryConnection"].ConnectionString;
-            var etagStore = new SqlServerEntityTagStore(connString);
-
-            var cacheHandler = new CachingHandler(config, etagStore);
+            //var connString = ConfigurationManager.ConnectionStrings["ELibraryConnection"].ConnectionString;
+            //var etagStore = new SqlServerEntityTagStore(connString);
+            //var cacheHandler = new CachingHandler(config, etagStore);
+            var cacheHandler = new CachingHandler(config);
             config.MessageHandlers.Add(cacheHandler);
 
         }
