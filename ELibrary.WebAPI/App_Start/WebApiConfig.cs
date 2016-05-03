@@ -91,6 +91,8 @@ namespace ELibrary.WebAPI
 
             jsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
 
+            CreateMediaTypes(jsonFormatter);
+
             //jsonFormatter.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
 
             //Add JSONP Support
@@ -113,6 +115,23 @@ namespace ELibrary.WebAPI
             config.Services.Replace(typeof(IHttpControllerSelector), new ELibraryControllerSelector(config));
         }
 
+        static void CreateMediaTypes(JsonMediaTypeFormatter jsonFormatter)
+        {
+            var mediaTypes = new string[]
+            {
+                "application/vnd.elibrary.book.v1+json",
+                "application/vnd.elibrary.book.v2+json",
+                "application/vnd.elibrary.order.v1+json",
+                "application/vnd.elibrary.order.v2+json",
+                "application/vnd.elibrary.tag.v1+json",
+                "application/vnd.elibrary.tag.v2+json"
+            };
 
+            foreach (var mediaType in mediaTypes)
+            {
+                jsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue(mediaType));
+            }
+
+        }
     }
 }
