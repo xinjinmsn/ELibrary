@@ -34,8 +34,9 @@ namespace ELibrary.WebAPI.Services
             }else if(controllers.TryGetValue(controllerName, out descriptor))
             {
                 //var version = GetVersionFromQueryString(request);
-
-                var version = GetVersionFromHeader(request);
+                //var version = GetVersionFromHeader(request);
+                var version = GetVersionFromAcceptHeader(request);
+                
 
                 var newName = string.Concat(controllerName, "V", version);
 
@@ -50,6 +51,25 @@ namespace ELibrary.WebAPI.Services
             }
 
             return null;
+        }
+
+        private object GetVersionFromAcceptHeader(HttpRequestMessage request)
+        {
+            var accept = request.Headers.Accept;
+
+            foreach(var mime in accept)
+            {
+                if(mime.MediaType=="application/json")
+                {
+                    var value = mime.Parameters
+                        .Where(v=>v.Name.Equals("version", StringComparison.OrdinalIgnoreCase))
+                        .FirstOrDefault();
+
+                    return value.Value;
+                }
+            }
+
+            return "1";
         }
 
         private string GetVersionFromHeader(HttpRequestMessage request)

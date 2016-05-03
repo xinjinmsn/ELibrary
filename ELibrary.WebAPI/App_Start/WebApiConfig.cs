@@ -4,6 +4,7 @@ using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Formatting;
 using System.Net.Http.Headers;
 using System.Web;
 using System.Web.Http;
@@ -23,7 +24,7 @@ namespace ELibrary.WebAPI
             config.Routes.MapHttpRoute(
                 name: "Book",
                 routeTemplate: "api/library/books/{bookid}",
-                defaults: new { controller = "books", bookid = RouteParameter.Optional}
+                defaults: new { controller = "books", bookid = RouteParameter.Optional }
                 );
 
             //config.Routes.MapHttpRoute(
@@ -47,7 +48,7 @@ namespace ELibrary.WebAPI
             config.Routes.MapHttpRoute(
                 name: "Orders",
                 routeTemplate: "api/user/orders/{orderid}",
-                defaults: new { controller = "orders", orderid=RouteParameter.Optional}
+                defaults: new { controller = "orders", orderid = RouteParameter.Optional }
                 );
 
 
@@ -61,7 +62,7 @@ namespace ELibrary.WebAPI
             config.Routes.MapHttpRoute(
                 name: "OrderSummary",
                 routeTemplate: "api/user/orders/{orderid}/summary",
-                defaults: new { controller = "ordersummary"}
+                defaults: new { controller = "ordersummary" }
                 );
 
             config.Routes.MapHttpRoute(
@@ -98,7 +99,7 @@ namespace ELibrary.WebAPI
 
 
             //Add Cors Support
-            config.EnableCors(new EnableCorsAttribute("*","*","*"));
+            config.EnableCors(new EnableCorsAttribute("*", "*", "*"));
 
 #if !DEBUG
             //config.Filters.Add(new RequireHttpsAttribute());
@@ -111,5 +112,7 @@ namespace ELibrary.WebAPI
             //Replace default controller selector
             config.Services.Replace(typeof(IHttpControllerSelector), new ELibraryControllerSelector(config));
         }
+
+
     }
 }
