@@ -1,4 +1,5 @@
-﻿using ELibrary.WebAPI.Filters;
+﻿using CacheCow.Server;
+using ELibrary.WebAPI.Filters;
 using ELibrary.WebAPI.Services;
 using Newtonsoft.Json.Serialization;
 using System;
@@ -118,6 +119,11 @@ namespace ELibrary.WebAPI
 
             //Replace default controller selector
             config.Services.Replace(typeof(IHttpControllerSelector), new ELibraryControllerSelector(config));
+
+            //Add CacheCow cache support
+            var cacheHandler = new CachingHandler(config);
+            config.MessageHandlers.Add(cacheHandler);
+
         }
 
         static void CreateMediaTypes(JsonMediaTypeFormatter jsonFormatter)
