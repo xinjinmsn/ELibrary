@@ -21,9 +21,11 @@ namespace ELibrary.WebAPI
             // Web API configuration and services
 
 
-            // Web API routes
-            config.MapHttpAttributeRoutes();
+            // Attribute Route
+            //config.MapHttpAttributeRoutes();
 
+
+            //Convention Route
             config.Routes.MapHttpRoute(
                 name: "Book",
                 routeTemplate: "api/library/books/{bookid}",
@@ -115,7 +117,7 @@ namespace ELibrary.WebAPI
 
 
             //Replace default controller selector
-            //config.Services.Replace(typeof(IHttpControllerSelector), new ELibraryControllerSelector(config));
+            config.Services.Replace(typeof(IHttpControllerSelector), new ELibraryControllerSelector(config));
         }
 
         static void CreateMediaTypes(JsonMediaTypeFormatter jsonFormatter)

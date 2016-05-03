@@ -13,7 +13,7 @@ using ELibrary.WebAPI.Constraints;
 
 namespace ELibrary.WebAPI.Controllers
 {
-    [VersionedRoute("api/library/books/{bookid?}", 2)]
+    //[VersionedRoute("api/library/books/{bookid?}", 1)]
     public class BooksV2Controller : BaseApiController
     {
 
