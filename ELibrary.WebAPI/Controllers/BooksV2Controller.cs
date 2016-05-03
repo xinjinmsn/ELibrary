@@ -9,9 +9,11 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Routing;
 using ELibrary.WebAPI.Filters;
+using ELibrary.WebAPI.Constraints;
 
 namespace ELibrary.WebAPI.Controllers
 {
+    [VersionedRoute("api/library/books/{bookid?}", 2)]
     public class BooksV2Controller : BaseApiController
     {
 
@@ -20,6 +22,8 @@ namespace ELibrary.WebAPI.Controllers
         }
 
         const int PAGE_SIZE = 5;
+
+
         public object Get(bool includeTags=true, int page=0)
         {
             IQueryable<Book> query;

@@ -190,6 +190,8 @@
     <Compile Include="ActionResults\RequireHttpsActionResult.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Constraints\VersionConstraint.cs" />
+    <Compile Include="Constraints\VersionRoute.cs" />
     <Compile Include="Controllers\BaseApiController.cs" />
     <Compile Include="Controllers\BooksV2Controller.cs" />
     <Compile Include="Controllers\BooksController.cs" />
