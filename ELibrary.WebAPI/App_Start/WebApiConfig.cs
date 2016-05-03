@@ -1,4 +1,5 @@
 ﻿using ELibrary.WebAPI.Filters;
+using ELibrary.WebAPI.Services;
 using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using System.Net.Http.Headers;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using System.Web.Http.Dispatcher;
 using WebApiContrib.Formatting.Jsonp;
 
 namespace ELibrary.WebAPI
@@ -104,6 +106,10 @@ namespace ELibrary.WebAPI
 
             //Disable Host-Level Authentication
             config.SuppressHostPrincipal();
+
+
+            //Replace default controller selector
+            config.Services.Replace(typeof(IHttpControllerSelector), new ELibraryControllerSelector(config));
         }
     }
 }
