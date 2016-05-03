@@ -51,7 +51,7 @@ namespace ELibrary.WebAPI.Models
             if (withTags)
                 return new BookWithTagsV2Model
                 {
-                    Url = _urlHelp.Link("Book", new { bookid = book.Id }),
+                    Url = _urlHelp.Link("Book", new { bookid = book.Id, v=2 }),
                     Title = book.Title,
                     Description = book.Description,
                     Tags = book.Tags.Select(m => Create(m, false)),
@@ -64,7 +64,7 @@ namespace ELibrary.WebAPI.Models
             else
                 return new BookV2Model
                 {
-                    Url = _urlHelp.Link("Book", new { bookid = book.Id }),
+                    Url = _urlHelp.Link("Book", new { bookid = book.Id, v=2 }),
                     Title = book.Title,
                     Description = book.Description,
                     Price = book.Price,

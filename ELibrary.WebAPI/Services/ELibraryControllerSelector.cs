@@ -33,7 +33,7 @@ namespace ELibrary.WebAPI.Services
                 base.SelectController(request);
             }else if(controllers.TryGetValue(controllerName, out descriptor))
             {
-                var version = "2";
+                var version = GetVersionFromQueryString(request);
 
                 var newName = string.Concat(controllerName, "V", version);
 
@@ -48,6 +48,20 @@ namespace ELibrary.WebAPI.Services
             }
 
             return null;
+        }
+
+        private string GetVersionFromQueryString(HttpRequestMessage request)
+        {
+            var query = HttpUtility.ParseQueryString(request.RequestUri.Query);
+
+            var version = query["v"];
+
+            if(version != null)
+            {
+                return version;
+            }
+                
+            return "1";
         }
     }
 }
