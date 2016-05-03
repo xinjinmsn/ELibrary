@@ -1,9 +1,11 @@
 ﻿using CacheCow.Server;
+using CacheCow.Server.EntityTagStore.SqlServer;
 using ELibrary.WebAPI.Filters;
 using ELibrary.WebAPI.Services;
 using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net.Http.Formatting;
 using System.Net.Http.Headers;
@@ -120,8 +122,14 @@ namespace ELibrary.WebAPI
             //Replace default controller selector
             config.Services.Replace(typeof(IHttpControllerSelector), new ELibraryControllerSelector(config));
 
+
+
             //Add CacheCow cache support
-            var cacheHandler = new CachingHandler(config);
+
+            var connString = ConfigurationManager.ConnectionStrings["ELibraryConnection"].ConnectionString;
+            var etagStore = new SqlServerEntityTagStore(connString);
+
+            var cacheHandler = new CachingHandler(config, etagStore);
             config.MessageHandlers.Add(cacheHandler);
 
         }
