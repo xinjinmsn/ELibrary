@@ -1,5 +1,6 @@
 ﻿using CacheCow.Server;
 using CacheCow.Server.EntityTagStore.SqlServer;
+using ELibrary.WebAPI.Converters;
 using ELibrary.WebAPI.Filters;
 using ELibrary.WebAPI.Services;
 using Newtonsoft.Json.Serialization;
@@ -98,6 +99,9 @@ namespace ELibrary.WebAPI
             jsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
 
             jsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
+
+            jsonFormatter.SerializerSettings.Converters.Add(new LinkModelConverter());
+
 
             CreateMediaTypes(jsonFormatter);
 

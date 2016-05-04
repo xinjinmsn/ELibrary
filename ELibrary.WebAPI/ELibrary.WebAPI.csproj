@@ -210,6 +210,7 @@
     <Compile Include="Controllers\ClearDBController.cs" />
     <Compile Include="Controllers\OrderEntriesController.cs" />
     <Compile Include="Controllers\OrderSummaryController.cs" />
+    <Compile Include="Converters\LinkModelConverter.cs" />
     <Compile Include="Filters\IdentityBasicAuthenticationAttribute.cs" />
     <Compile Include="Filters\RequireHttpsAttribute.cs" />
     <Compile Include="Models\BookV2Model.cs" />
