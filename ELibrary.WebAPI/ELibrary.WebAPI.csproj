@@ -214,6 +214,7 @@
     <Compile Include="Filters\RequireHttpsAttribute.cs" />
     <Compile Include="Models\BookV2Model.cs" />
     <Compile Include="Models\BookWithTagsV2Model.cs" />
+    <Compile Include="Models\LinkModel.cs" />
     <Compile Include="Models\OrderEntryModel.cs" />
     <Compile Include="Models\OrderModel.cs" />
     <Compile Include="Controllers\OrdersController.cs" />

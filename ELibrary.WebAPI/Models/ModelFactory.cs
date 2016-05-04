@@ -130,11 +130,28 @@ namespace ELibrary.WebAPI.Models
         {
             return new OrderModel
             {
-                Url = _urlHelp.Link("Orders", new { orderid = d.CurrentDate.ToString("yyyy-MM-dd") }),
+                
+                Links = new List<LinkModel>()
+                {
+                    CreateLink(_urlHelp.Link("Orders", new { orderid = d.CurrentDate.ToString("yyyy-MM-dd") }),"self"),
+                    CreateLink(_urlHelp.Link("OrderEntries", new { orderid = d.CurrentDate.ToString("yyyy-MM-dd") }),"newOrderEntry", "POST"),
+
+                },
                 CurrentDate = d.CurrentDate,
                 Entries = d.Entries.Select(e=>Create(e))
-        };
-    }
+            };
+        }
+
+        public LinkModel CreateLink(string href, string rel, string method="GET", bool isTemplated=false)
+        {
+            return new LinkModel()
+            {
+                Href = href,
+                Rel = rel,
+                Method = method,
+                IsTemplated = isTemplated
+            };
+        }
 
         public TagModel Create(Tag tag, bool withBook = true)
         {

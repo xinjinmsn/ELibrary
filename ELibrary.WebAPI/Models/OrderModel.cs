@@ -6,6 +6,8 @@ namespace ELibrary.WebAPI.Models
     public class OrderModel
     {
         public string Url { get; set; }
+
+        public ICollection<LinkModel> Links { get; set; }
         public DateTime CurrentDate { get; set; }
 
         public IEnumerable<OrderEntryModel> Entries { get; set; }
