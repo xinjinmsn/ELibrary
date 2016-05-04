@@ -37,10 +37,20 @@ namespace ELibrary.WebAPI.Controllers
 
             var totalCount = baseQuery.Count();
             var totalPages = Math.Ceiling((double)totalCount/PAGE_SIZE);
-
+            
             var helper = new UrlHelper(Request);
-            var prevUrl = page > 0 ? helper.Link("Book", new { page=page-1}): "";
-            var nextUrl = page < totalPages - 1 ? helper.Link("Book", new { page = page + 1}): "";
+
+            var links = new List<LinkModel>();
+
+            if(page>0)
+            {
+                links.Add(TheModelFactory.CreateLink(helper.Link("Book", new { page = page - 1 }), "prevPage"));
+            }
+
+            if(page < totalPages - 1)
+            {
+                links.Add(TheModelFactory.CreateLink(helper.Link("Book", new { page = page + 1 }), "nextPage"));
+            }
 
             var results = baseQuery.Skip(PAGE_SIZE*page)
                             .Take(PAGE_SIZE)
@@ -51,8 +61,7 @@ namespace ELibrary.WebAPI.Controllers
             {
                 TotalCount = totalCount,
                 TotalPages = totalPages,
-                PrevPageUrl = prevUrl,
-                NextPageUrl = nextUrl,
+                Links = links,
                 Results = results
             };
         }
